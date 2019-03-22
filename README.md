@@ -1,2 +1,2 @@
-# Fanfic.pl
-Polish website for fanfics writers / readers :3
+# HorrorInCode
+A small personal project that merges two things into one piece - My blog and my portfolio.
