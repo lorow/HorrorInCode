@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block content %}
+<div uk-scrollspy="cls:uk-animation-fade" class="uk-background-blend-overlay uk-background-secondary uk-flex uk-flex-center uk-flex-middle uk-background-secondary uk-height-viewport uk-light uk-background-cover
+                uk-text-center" data-src="{% static 'img/banner.png' %}"
+                uk-img>
+
+<div class="" uk-scrollspy="cls:uk-animation-slide-bottom-medium">
+    <form method="post" action="{% url 'login' %}">
+    	<fieldset class="uk-fieldset">
+
+    		<legend class="uk-heading-primary">Zaloguj się</legend>
+
+    		<hr class="uk-divider-small">
+            <div class="uk-grid-collapse uk-flex-center uk-child-width-1-4" uk-grid>
+                <div>
+                    <a href="{% url 'social:begin' 'google-oauth2' %}"><img src="{% static 'img/google.jpg' %}"></a>
+                </div>
+                <div>
+                    <img src="{% static 'img/facebook.jpg' %}">
+                </div>
+            </div>
+            <hr class="uk-divider-small">
+
+	        {% csrf_token %}
+
+	        <div class="uk-margin">
+	            <div class="uk-inline uk-width-1-1">
+	                <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: user"></span>
+	                <input class="uk-input" type="text" placeholder="nazwa użytkownika" name="username">
+	            </div>
+	        </div>
+
+	        <div class="uk-margin">
+	            <div class="uk-inline uk-width-1-1">
+	                <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
+	                <input class="uk-input" type="password" placeholder="hasło" name="password">
+	            </div>
+	        </div>
+	        {% if form.errors %}
+
+	            <script>
+	            	UIkit.notification({message: 'Coś się spierdoliło, sprawdź czy podałeś prawidłowe dane...', status: 'danger'});
+	            </script>
+
+	        {% endif %}
+
+	        <div class="uk-margin uk-flex-middle uk-flex-center" uk-grid>
+	        	<div>
+	        		<button type=submit class="uk-button uk-button-secondary">Zaloguj się</button>
+	        	</div>
+	    	</div>
+			<p class="uk-text-small">Nie masz jeszcze konta? <a href="{% url 'register' %}" class="uk-link-reset">DOŁACZ DO NAS!</a></p>
+	    </fieldset>
+	</form>
+</div>
+</div>
+
+
+{% endblock %}

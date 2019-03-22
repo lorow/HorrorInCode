@@ -1,0 +1,62 @@
+{% block navbar %}
+{% load static %}
+
+
+<header id="header" style="background-color: rgba(0, 0, 0, .8);" class="uk-sticky" uk-sticky>
+    <div class="uk-container uk-container-large">
+        <nav id="navbar" data-uk-navbar="mode: click;" class="uk-navbar uk-light">
+
+            <div class="uk-navbar-left nav-overlay uk-visible@m">
+                <ul class="uk-navbar-nav">
+                    <li>
+                        <a href="#" title="" class="uk-button-text">POPULAR</a>
+                    </li>
+                    <li>
+                        <a href="#" title="Sign Up" class="uk-button-text">SHITPOST</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="uk-navbar-center nav-overlay">
+                <a class="uk-navbar-item uk-logo" href="{% url 'index' %}" title="Logo"><img src="img/n-logo.png" alt="Logo"></a>
+            </div>
+            <div class="uk-navbar-right nav-overlay">
+                <a class="uk-navbar-toggle uk-visible@m uk-search-icon uk-icon" data-uk-search-icon="" data-uk-toggle="target: .nav-overlay; animation: uk-animation-fade" href="#"><svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><circle fill="none" stroke="#000" stroke-width="1.1" cx="9" cy="9" r="7"></circle><path fill="none" stroke="#000" stroke-width="1.1" d="M14,14 L18,18 L14,14 Z"></path></svg></a>
+
+                <div class="uk-navbar-item uk-margin-small-left">
+                {% if not user.is_authenticated %}
+                    <a href="{% url 'login' %}" class="uk-button hrc-button-default">LOGIN/REGISTER</a>
+                {% endif %}
+                {% if user.is_authenticated %}
+                    <div class="uk-inline">
+                        <button type="button" class="uk-button uk-button-default hrc-button-default">{{ user.username }}</button>
+                        <div uk-dropdown="animation: uk-animation-slide-top-small; duration: 1000">
+                            <ul class="uk-nav uk-dropdown-nav">
+                            <li class="uk-active"><a href="#">Profile</a></li>
+                            <li class="uk-active"><a href="#">Articles</a></li>
+                            {% if perms.App.can_add_article %}
+                            <li class="uk-active"><a href="{% url 'article_new_view' %}">Shitpost time!</a></li>
+                            {% endif %}
+                            <li class="uk-nav-divider"></li>
+                            <a href="{% url 'logout' %}" class="uk-button uk-button-small hrc-button-primary uk-margin-small-top" style="color: #0080FF">LOGOUT</a>
+                        </ul>
+                     </div>
+                    </div>
+                {% endif %}
+                </div>
+            </div>
+
+
+            <div class="nav-overlay uk-navbar-left uk-flex-1" hidden="">
+                <div class="uk-navbar-item uk-width-expand">
+                    <form class="uk-search uk-search-navbar uk-width-1-1" action="{% url 'index' %}">
+                        <input class="uk-search-input" type="search" name="search" placeholder="Search...">
+                    </form>
+                </div>
+                <a class="uk-navbar-toggle uk-close uk-icon" data-uk-close="" data-uk-toggle="target: .nav-overlay; animation: uk-animation-fade" href="#"><svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg"><line fill="none" stroke="#000" stroke-width="1.1" x1="1" y1="1" x2="13" y2="13"></line><line fill="none" stroke="#000" stroke-width="1.1" x1="13" y1="1" x2="1" y2="13"></line></svg></a>
+            </div>
+        </nav>
+    </div>
+</header>
+
+{% endblock %}
