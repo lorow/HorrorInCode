@@ -3,7 +3,6 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.dispatch import receiver
 from django.db.models.signals import post_save
-# Create your models here.
 import django.utils.timezone as date
 
 
@@ -28,7 +27,6 @@ class UserProfile(models.Model):
 
     class Meta:
         managed = True
-        permissions = (("can_write_post", ),)
 
 
 class Article(models.Model):

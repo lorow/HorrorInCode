@@ -3,13 +3,7 @@ from rest_framework.response import Response
 from rest_framework import status
 
 from Article.serializers import ArticleSerializer
-from Article.serializers import CommentSerializer
 from App.models import *
-
-
-class CommentViewSet(viewsets.ModelViewSet):
-    queryset = Comment.objects.all()
-    serializer_class = CommentSerializer
 
 
 class ArticleViewSet(viewsets.ModelViewSet):
