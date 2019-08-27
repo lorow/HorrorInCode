@@ -1,0 +1,41 @@
+.hrc-navbar-item{
+    color: white;
+    font-size: 15px !important;
+    text-transform: capitalize;
+    position: relative;
+
+    &::before{
+        content: "";
+        position: absolute;
+        width: 40%;
+        bottom: 5px;
+        left: 0;
+        visibility: hidden;
+        transform: scaleX(0);
+        border-bottom: 4px solid #0007CF;
+        transform-origin: left;
+        transition: all 0.3s ease-in-out 0s;
+    }
+
+    &:hover::before{
+        visibility: visible;
+        -webkit-transform: scaleX(1);
+        transform: scaleX(1);
+    }
+}
+
+.hrc-navbar{
+    max-width: 90vw;
+    padding-top: 30px;
+}
+
+.hrc-offcanvas-item{
+    font-size: 21px;
+    color: white !important;
+}
+
+@media(max-width: 960px){
+    .hrc-navbar{
+        padding-top: 10px;
+    }
+}

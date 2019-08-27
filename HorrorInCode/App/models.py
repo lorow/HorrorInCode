@@ -7,17 +7,6 @@ from django.db.models.signals import post_save
 import django.utils.timezone as date
 
 
-class Categories(models.Model):
-    category = models.AutoField(primary_key=True)
-    category_name = models.CharField(max_length=30)
-
-    def __str__(self):
-        return self.category_name
-
-    class Meta:
-        managed = True
-
-
 class UserProfile(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="user")
@@ -39,7 +28,7 @@ class UserProfile(models.Model):
 
     class Meta:
         managed = True
-        permissions = (("can_write_post", "Can deliver pizzas"),)
+        permissions = (("can_write_post", ),)
 
 
 class Article(models.Model):
@@ -61,18 +50,3 @@ class Article(models.Model):
     class Meta:
         managed = True
         ordering = ['-article_id', ]
-
-
-class Comment(models.Model):
-    comment_id = models.AutoField(primary_key=True)
-    article_id = models.ForeignKey(Article, related_name="comments", on_delete=models.CASCADE, default=0)
-    user_id = models.ForeignKey(UserProfile, related_name="creator", on_delete=models.CASCADE, default=0)
-    pub_date = models.DateField(default=date.now())
-    description = models.TextField()
-
-    def __str__(self):
-        return self.description[:10]
-
-    class Meta:
-        managed = True
-        ordering = ['-comment_id', ]

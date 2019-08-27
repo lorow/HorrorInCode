@@ -1,69 +1,55 @@
 import React from 'react';
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
+import { TransitionGroup , Transition } from 'react-transition-group';
 
-function ContentHolder(props){
+import './style.scss';
 
-    return(
-        // main container
-        <React.Fragment>
-        <div className="uk-container uk-container-expand">
-        {/* scroller */}
-        <div class="uk-position-center-right uk-position-medium uk-position-fixed uk-margin-xlarge-right">
-            <ul class="uk-dotnav uk-dotnav-vertical">
-                <li class="uk-active"><a href="#landingPage" style={{backgroundColor:'white', width:'10px', height:'10px'}}>Item 1</a></li>
-                <li><a href="#landingPage" style={{borderColor:'white', width:'10px', height:'10px'}}>Item 2</a></li>
-                <li><a href="#landingPage" style={{borderColor:'white', width:'10px', height:'10px'}}>Item 3</a></li>
-                <li><a href="#landingPage" style={{borderColor:'white', width:'10px', height:'10px'}}>Item 4</a></li>
-                <li><a href="#landingPage" style={{borderColor:'white', width:'10px', height:'10px'}}>Item 5</a></li>
-            </ul>
-        </div>
-        {/* /scroller */}
+import LandingPanel from '../LandingPanel';
+import BlogPanel from '../BlogPanel';
+import ProjectsPanel from '../ProjectsPanel';
+import AboutPanel from '../AboutPanel';
+import ContactPanelContainer from '../../containers/ContactPanelContainer';
+import Navbar from '../Navbar';
+import SideMenu from '../SideMenu';
+import { play } from '../timeline';
 
-        {/* first panel */ }
-            <div id="landingPage" className="uk-section uk-margin-top">
-                <div className="uk-container">
-                    <p className="uk-button uk-disabled" style={{color:'#919191', fontSize:'71px'}}>
-                        01
-                    </p>
-                    <div className="uk-button uk-button-large uk-align-right" style={{
-                        boxShadow:'-12px 12px 0px -5px rgba(0,0,143,0.6)',
-                        MozBoxShadow:'-12px 12px 0px -5px rgba(0,0,143,0.6)',
-                        WebkitBoxShadow:'-12px 12px 0px -5px rgba(0,0,143,0.6)',
-                        backgroundColor:'#0007CF',
-                        color:'white',
-                        padding:' 0 12px'
-                    }}>
-                        Source on Github
-                    </div>
-                </div>
+function ContentHolder() {
 
-                <div className="uk-container uk-container-small">
-                    <h1 className="uk-margin-medium-top uk-margin-left" style={{color:'white'}}>
-                        Hi there!
-                    </h1>
-                    <h3 className="uk-margin-medium-left uk-margin-remove-top uk-width-2-3" style={{color:'#BFBFBF'}}>
-                        I am Zdzisław, a creative developer form Poland,
-                        And this is HorrorInCode, a place where I combine 
-                        the horrors of code I encounter as well as present myself.
-                    </h3>
+  const routes = [
+    { path: '/', name: 'home', Component: LandingPanel },
+    { path: '/blog', name: 'blog', Component: BlogPanel },
+    { path: '/projects', name: 'projects', Component: ProjectsPanel },
+    { path: '/about', name: 'about', Component: AboutPanel },
+    { path: '/contact', name: 'contact', Component: ContactPanelContainer },
+  ]
 
-                    <div className="uk-margin-large-top uk-margin-large-left">
-                        <a href="#blog" className="uk-button" style={{
-                            background:'linear-gradient(to right, #0008FF, #050AB2)',
-                            color:'white',
-                            padding:'2px 50px'
-                        }}>Blog</a>
-                        <a href="#contact" className="uk-button uk-margin-left" style={{
-                            border:'2px solid #0008FF',
-                            color:'white',
-                        }}>Contact</a>
-                    </div>
-                </div>
+  return (
+  <main id="Content" style={{ height: '100vh', backgroundColor: 'black' }}>
+    <Router>
+        <Navbar/>
+        <Route render={ ({ location }) => {
+          const { pathname, key } = location;
 
-            </div>
-        {/* /first panel */}
-        </div>
-        </React.Fragment>
-    );
+          return (
+            <TransitionGroup style={{position: 'absolute', width: '100vw', height: '100vh'}}>
+              <Transition
+                key={key}
+                appear={true}
+                onEnter={ ( node ) => play(pathname, true) }
+                onExit={ ( node ) => play(pathname, false) }
+                timeout={ {enter:750, exit: 150} }
+              >
+                <Switch location={location}>
+                  { routes.map( ({path, Component}) => ( <Route key={path} exact path={path} component={Component} /> ) ) }
+                </Switch>
+              </Transition>
+            </TransitionGroup>
+          )
+          }}/>
+        <SideMenu />
+    </Router>
+  </main>
+  );
 }
 
 export default ContentHolder; 

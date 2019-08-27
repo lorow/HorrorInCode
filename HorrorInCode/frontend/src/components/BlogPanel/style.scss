@@ -1,0 +1,146 @@
+.blog-section{
+    display: grid;
+
+    grid-template-columns: 0px auto 60px 60px 40px minmax(0, 900px) 40px 60px 60px auto 0px;
+    grid-template-rows: 6vw 50px 50px repeat(5, 100px) 30px 50px;
+
+    figure{
+        
+        grid-column: 5 / 8;
+        grid-row: 4 / 10;
+
+        margin: 0;
+
+        overflow: hidden;
+        position: relative;
+
+        img {
+         max-width: 100%;
+         height: auto;
+        }
+    }
+}
+
+.post-title{
+    color: transparent;
+    -webkit-text-stroke: 2px white;
+    text-stroke: 2px white;
+    text-shadow: none;
+
+    grid-column: 3 / span 5;
+    grid-row: 2;
+
+    padding-top: 40px;
+
+    font-size: calc(2em + 2vw);
+    z-index: 3;
+}
+
+.previous-button{
+    grid-column: 3;
+    grid-row: 6;
+    display: flex;
+    flex-direction: row;
+
+    img{
+        align-self: middle;
+    }
+}
+
+.next-button{
+    grid-column: 9;
+    grid-row: 6;
+    display: flex;
+    flex-direction: row;
+
+    img{
+        align-self: middle;
+    }
+}
+
+.image-container{
+    position: relative;
+}
+
+.button-readMore{
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 70px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    left: 0;
+
+    color: white;
+
+    border-color: white;
+    border: 2px solid;
+    padding: 10px 40px;
+    border-radius: 80px;
+
+    z-index: 99;
+}
+
+@media (max-width: 1200px){
+    .button-readMore{
+        margin-bottom: 40px;
+        padding: 8px 30px;
+    }
+}
+
+@media (max-width: 1054px){
+    .previous-button{
+        grid-column: 3;
+        grid-row: 5 / 7;
+    }
+    
+    .next-button{
+        grid-column: 9;
+        grid-row: 5 / 7;
+    }
+}
+
+@media (max-width: 820px){
+
+    .blog-section{
+        figure{
+            grid-row: 5 / 10;
+        }
+    }
+
+    .post-title{
+        grid-column: 5 / 8;
+        grid-row: 3;
+        text-align: center;
+    }
+
+    .previous-button{
+        grid-column: 5;
+        grid-row: 8 / 10;
+    }
+    
+    .next-button{
+        grid-column: 7;
+        grid-row: 8 / 10;
+    }
+
+
+}
+
+@media (max-width: 600px){
+    .blog-section{
+        figure{
+            grid-row: 5/ 8;
+            grid-column: 4/9;
+            display: flex;
+            flex-direction: row
+        }
+
+        .image-container{
+            align-self: center;
+        }
+    }
+
+    .button-readMore{
+        display: none;
+    }
+}

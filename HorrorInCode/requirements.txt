@@ -1,4 +1,0 @@
-mysqlclient==1.3.12
-django
-ujson
-social-auth-app-django
