@@ -9,10 +9,7 @@ import django.utils.timezone as date
 class UserProfile(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="user")
-    bio = models.TextField(max_length=500, blank=True, null=True)
-    birth_date = models.DateField(null=True, blank=True)
-    profile_image = models.ImageField(default='furry.jpg')
-    profession = models.TextField(default='user')
+    objects = models.Manager()
     user_secret = models.TextField(default=secrets.token_urlsafe())
 
     @receiver(post_save, sender=User, dispatch_uid='save_new_user_profile')
@@ -35,6 +32,7 @@ class Article(models.Model):
     description = models.TextField()
     views_amount = models.IntegerField(default=0)
     tags = models.TextField()
+    objects = models.Manager()
     pub_date = models.DateField(default=date.now)
     reading_time = models.IntegerField(default=0)
 

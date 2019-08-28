@@ -7,7 +7,6 @@ from auth.views import *
 router = routers.DefaultRouter()
 
 router.register(r'profile', UserProfileView)
-router.register(r'user', UserViewSet)
 router.register(r'articles', ArticleViewSet)
 
 router.register(r'register', RegisterView)

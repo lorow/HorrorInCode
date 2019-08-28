@@ -8,7 +8,7 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         depth = 1
-        fields = ('url', 'id', 'username', 'first_name', 'last_name', 'email',
+        fields = ('id', 'username', 'first_name', 'last_name', 'email',
                   'is_superuser', 'is_staff')
 
 
@@ -20,8 +20,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserProfile
         depth = 1
-        fields = ('id', 'bio', 'birth_date', 'profile_image',  'profession', 'user',
-                  )
+        fields = ('id', 'user',)
 
     def get_full_name(self, obj):
         request = self.context['request']

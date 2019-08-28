@@ -1,12 +1,6 @@
 from rest_framework import viewsets
 from .models import UserProfile
-from .serializers import UserProfileSerializer, UserSerializer
-from django.contrib.auth.models import User
-
-
-class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
+from .serializers import UserProfileSerializer
 
 
 class UserProfileView(viewsets.ModelViewSet):
