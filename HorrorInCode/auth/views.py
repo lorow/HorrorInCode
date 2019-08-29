@@ -7,8 +7,7 @@ from rest_framework import viewsets
 from App.models import UserProfile
 import secrets
 
-from auth.services import login_user
-from App.serializers import UserSerializer
+from auth.services import login_user, register_user
 
 
 class LogoutView(viewsets.GenericViewSet, mixins.CreateModelMixin):
@@ -51,7 +50,7 @@ class LoginView(mixins.CreateModelMixin, viewsets.GenericViewSet):
 
     def create(self, request, *args, **kwargs):
         serializer = self.InputSerializer(data=request.data)
-        serializer.is_valid()
+        serializer.is_valid(raise_exception=True)
         token = login_user(request, **serializer.validated_data)
         return Response(data={'token': token,}, status=status.HTTP_200_OK)
 
@@ -62,24 +61,38 @@ class RegisterView(mixins.CreateModelMixin, viewsets.GenericViewSet):
 
     queryset = User.objects.all()
     permission_classes = (permissions.AllowAny,)
-    serializer_class = UserSerializer
+
+    class InputSerializer(serializers.Serializer):
+        username = serializers.CharField(max_length=255)
+        password = serializers.CharField(max_length=255)
+        confirm_password = serializers.CharField(max_length=255)
+        email = serializers.EmailField()
+
+    def get_serializer(self, *args, **kwargs):
+        return self.InputSerializer()
 
     def create(self, request, *args, **kwargs):
-        username = request.data.get("username", "")
-        password = request.data.get("password", "")
-        email = request.data.get("email", "")
-        user_secret = secrets.token_urlsafe()
+        serializer = self.InputSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        register_user(**serializer.validated_data)
 
-        if not username and not password and not email:
-            return Response(
-                data={
-                    "message": "username, password and email is required to register a user",
-                },
-                status=status.HTTP_400_BAD_REQUEST
-            )
+        return Response(data={'status':'Your account has been successfully created'}, status=status.HTTP_200_OK)
 
-        User.objects.create_user(
-            username=username, password=password, email=email, user_secret=user_secret
-        )
-
-        return Response(status=status.HTTP_201_CREATED)
+        # username = request.data.get("username", "")
+        # password = request.data.get("password", "")
+        # email = request.data.get("email", "")
+        # user_secret = secrets.token_urlsafe()
+        #
+        # if not username and not password and not email:
+        #     return Response(
+        #         data={
+        #             "message": "username, password and email is required to register a user",
+        #         },
+        #         status=status.HTTP_400_BAD_REQUEST
+        #     )
+        #
+        # User.objects.create_user(
+        #     username=username, password=password, email=email, user_secret=user_secret
+        # )
+        #
+        # return Response(status=status.HTTP_201_CREATED)

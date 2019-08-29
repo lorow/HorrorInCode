@@ -1,4 +1,5 @@
 from django.contrib.auth import login, authenticate
+from django.contrib.auth.models import User
 from rest_framework.request import Request
 from auth.serializers import TokenSerializer
 from rest_framework_jwt.settings import api_settings
@@ -30,8 +31,12 @@ def login_user(request: Request, username: str, password: str) -> str:
         raise ValidationError("this user does not exists, wrong credentials")
 
 
-def register_user(request):
-    pass
+def register_user(username, password, confirm_password, email):
+
+    if password != confirm_password:
+        raise ValidationError("passwords don't match")
+
+    User.objects.create_user(username, email, password)
 
 
 def logout_user(request):
