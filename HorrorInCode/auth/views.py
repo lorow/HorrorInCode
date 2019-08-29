@@ -1,30 +1,26 @@
-from django.contrib.auth.models import User
-from django.contrib.auth import login, authenticate
-from rest_framework import viewsets
-from rest_framework.response import Response
-from rest_framework_jwt.settings import api_settings
+from auth.serializers import TokenSerializer
 from rest_framework import permissions, status, mixins
+from rest_framework.response import Response
+from django.contrib.auth.models import User
+from rest_framework import serializers
+from rest_framework import viewsets
 from App.models import UserProfile
-from auth.serializers import TokenSerializer, LoginSerialier
 import secrets
-# Get the JWT settings, add these lines after the import/from lines
+
+from auth.services import login_user
 from App.serializers import UserSerializer
 
 
-jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
-jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
-
-
-class LogoutView(viewsets.ModelViewSet):
+class LogoutView(viewsets.GenericViewSet, mixins.CreateModelMixin):
     """
     POST auth/logout
     """
 
-    permission_classes = (permissions.IsAuthenticated, )
+    permission_classes = (permissions.AllowAny, )
     serializer_class = TokenSerializer
     queryset = User.objects.all()
 
-    def noreason(self, request, *args, **kwargs):
+    def post(self, request, *args, **kwargs):
 
         profile = UserProfile.objects.get(id=request.user.id)
         profile.user_secret = secrets.token_urlsafe()
@@ -35,7 +31,7 @@ class LogoutView(viewsets.ModelViewSet):
                         )
 
 
-class LoginView(mixins.CreateModelMixin ,viewsets.GenericViewSet):
+class LoginView(mixins.CreateModelMixin, viewsets.GenericViewSet):
     """
     create:
     Tries login the user with data packed as {"username":"user", "password":"pass"}.
@@ -44,34 +40,23 @@ class LoginView(mixins.CreateModelMixin ,viewsets.GenericViewSet):
     """
 
     permission_classes = (permissions.AllowAny,)
-    serializer_class = LoginSerialier
     queryset = User.objects.all()
 
+    class InputSerializer(serializers.Serializer):
+        username = serializers.CharField(max_length=255)
+        password = serializers.CharField(max_length=255)
+
+    def get_serializer(self, *args, **kwargs):
+        return self.InputSerializer()
+
     def create(self, request, *args, **kwargs):
-        username = request.data.get("username", "")
-        password = request.data.get("password", "")
-
-        user = authenticate(request, username=username, password=password)
-
-        # successful auth
-        if user is not None:
-            # login him, and save the token
-            login(request, user)
-            serializer = TokenSerializer(
-                data={
-                    'token': jwt_encode_handler(
-                        jwt_payload_handler(user)
-                    )
-                }
-            )
-            serializer.is_valid()
-            return Response(serializer.data)
-        return Response(
-            status=status.HTTP_401_UNAUTHORIZED
-        )
+        serializer = self.InputSerializer(data=request.data)
+        serializer.is_valid()
+        token = login_user(request, **serializer.validated_data)
+        return Response(data={'token': token,}, status=status.HTTP_200_OK)
 
 
-class RegisterView(mixins.CreateModelMixin ,viewsets.GenericViewSet):
+class RegisterView(mixins.CreateModelMixin, viewsets.GenericViewSet):
     """
     """
 
