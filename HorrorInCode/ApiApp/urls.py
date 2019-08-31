@@ -10,8 +10,7 @@ router.register(r'profile', UserProfileView)
 router.register(r'articles', ArticleViewSet)
 
 router.register(r'register', RegisterView)
-router.register(r'login', LoginView)
-router.register(r'logout', LogoutView)
+# router.register(r'login', LoginView)
 
 urlpatterns = [
     path('', include(router.urls)),

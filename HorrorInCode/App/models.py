@@ -10,7 +10,6 @@ class UserProfile(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="user")
     objects = models.Manager()
-    user_secret = models.TextField(default=secrets.token_urlsafe())
 
     @receiver(post_save, sender=User, dispatch_uid='save_new_user_profile')
     def save_profile(sender, instance, created, **kwargs):

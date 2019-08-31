@@ -12,7 +12,6 @@ class UserSerializer(serializers.ModelSerializer):
                   'is_superuser', 'is_staff')
 
 
-
 class UserProfileSerializer(serializers.ModelSerializer):
     user = UserSerializer()
     id = serializers.IntegerField(source='pk', read_only=True)
