@@ -16,7 +16,8 @@ export default function ContactPanel(props) {
       </p>
 
       <p className="contact--additional_info--subsection">
-        Or meet me here: 
+        Or meet me here:
+        {process.env.NODE_ENV}
       </p>
 
       <form className="contact--email_form" onSubmit={props.formHandler}>

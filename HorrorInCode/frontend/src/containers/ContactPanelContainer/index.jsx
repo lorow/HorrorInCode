@@ -8,7 +8,9 @@ export default function ContactPanelContainer(props){
         var data = new FormData(e.target);
         var jsonData = {};
         data.forEach((value, key) => {jsonData[key] = value});
-        // make an api call here, something like /api/email/
+        
+        // for the sake of testing and actually doing something
+        
     }
 
     return(

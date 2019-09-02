@@ -30,7 +30,7 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '0KwgYMM73cHGISpkALnCwNNX'
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '80p1+s(d$x5&%+6@d_3=hy(l-#^55m+@*u=@s&d@zgmg9xoy#n'
+SECRET_KEY = os.environ['DJANGO_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -159,6 +159,13 @@ JWT_AUTH = {
     'JWT_AUTH_HEADER_PREFIX': 'Bearer',
     'JWT_AUTH_COOKIE': None,
 }
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 's1.ct8.pl'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'informator@mignight12.ct8.pl'
+EMAIL_HOST_PASSWORD = os.environ['EMAIL_PASSWORD']
 
 
 # Internationalization
