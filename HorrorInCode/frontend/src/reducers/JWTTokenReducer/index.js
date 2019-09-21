@@ -5,7 +5,7 @@ const JWTTokenReducer = (state = "", action) => {
             return action.text
         
         default:
-            return ''
+            return state
     }
 
 }

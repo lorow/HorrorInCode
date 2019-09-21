@@ -8,9 +8,6 @@ export default function ContactPanelContainer(props){
         var data = new FormData(e.target);
         var jsonData = {};
         data.forEach((value, key) => {jsonData[key] = value});
-        
-        // for the sake of testing and actually doing something
-        
     }
 
     return(

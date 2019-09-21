@@ -24,14 +24,14 @@ function ContentHolder() {
   ]
 
   return (
-  <main id="Content" style={{ height: '100vh', backgroundColor: 'black' }}>
+  <main id="content__section" className="content__section">
     <Router>
         <Navbar/>
         <Route render={ ({ location }) => {
           const { pathname, key } = location;
 
           return (
-            <TransitionGroup style={{position: 'absolute', width: '100vw', height: '100vh'}}>
+            <TransitionGroup style={{width: '100vw'}}>
               <Transition
                 key={key}
                 appear={true}

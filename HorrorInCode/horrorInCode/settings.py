@@ -33,7 +33,7 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '0KwgYMM73cHGISpkALnCwNNX'
 SECRET_KEY = os.environ['DJANGO_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -91,8 +91,11 @@ WSGI_APPLICATION = 'horrorInCode.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_pyscopg2',
+        'NAME': 'p11252_lorow',
+        'USER': 'p11252_lorow',
+        'PASSWORD': 'Tandeta23',
+        'HOST': 'pgsql.ct8.pl',
     }
 }
 

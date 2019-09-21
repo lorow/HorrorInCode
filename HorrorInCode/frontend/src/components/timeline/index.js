@@ -14,9 +14,6 @@ function striptPath(path) {
 
 export const play = (path, isEntering) => {
     let animFunc = isEntering ? timelines_entering[striptPath(path)] : timelines_exiting[striptPath(path)]
-
-    console.log(path, isEntering)
-
     let anim = animFunc()
     anim.play()
 }
