@@ -110,7 +110,7 @@
     .contact-section{
         display: grid;
         grid-template-columns: 0px repeat(7, 1fr)  0px;
-        grid-template-rows: 20vh repeat(14, 8vh);
+        grid-template-rows: 0vh repeat(14, 8vh);
     }
     
     .contact--email_form{
