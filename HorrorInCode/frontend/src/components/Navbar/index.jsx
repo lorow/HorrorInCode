@@ -4,7 +4,7 @@ import './style.scss';
 
 function Navbar(props) {
   return (
-    <header className="nav uk-sticky" style={{zIndex: 9, top: 0, left: 0, right: 0}} >
+    <header className="nav uk-sticky" style={{zIndex: 99, position: "absolute",top: 0, left: 0, right: 0}} >
       <div className="uk-container hrc-navbar">
         <nav className="uk-navbar-transparent uk-navbar" data-uk-navbar="">
         

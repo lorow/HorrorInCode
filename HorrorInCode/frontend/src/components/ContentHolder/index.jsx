@@ -31,7 +31,7 @@ function ContentHolder() {
           const { pathname, key } = location;
 
           return (
-            <TransitionGroup style={{width: '100vw'}}>
+            <TransitionGroup component={null}>
               <Transition
                 key={key}
                 appear={true}
