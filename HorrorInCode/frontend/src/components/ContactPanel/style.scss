@@ -14,7 +14,11 @@
     color: white;
     grid-column: 4 /8;
     grid-row: 3;
-
+.contact-section{
+    display: grid;
+    grid-template-columns: 0px 1.5fr .5fr 60px repeat(7, 200px)  1fr;
+    grid-template-rows: 5vh repeat(7, 8vh);
+}
     font-size: 60px;
     margin-top: 5px;
 }
@@ -54,7 +58,8 @@
     grid-column: 8 / 10;
     grid-row: 3 / 8;
 
-    text-align: center;    
+    text-align: center;
+
     *{
         color: white;
         transition: all .2s ease-in-out;
@@ -70,7 +75,6 @@
         background-color: transparent;
         height: 1.2vw;
         margin-top: 20px;
-
         padding: 5px 5px;
     }
 
@@ -107,46 +111,22 @@
 }
 
 @media(max-width: 1520px){
-    .contact-section{
-        display: grid;
-        grid-template-columns: 0px repeat(7, 1fr)  0px;
-        grid-template-rows: 0vh repeat(14, 8vh);
-    }
-    
-    .contact--email_form{
-        grid-column: 4 / 7;
-        grid-row: 8 / 15;
-    }
-}
 
-@media(max-width: 960px){
+    .contact-section{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
     .contact--email_form{
-        grid-column: 3/ 8;
+        width: 40%;
     }
 
     .contact--decorative_stroke{
-        grid-column: 3;
-        grid-row: 3;
+        width: 60px;
     }
-    
-    .contact--title{
-        grid-column: 3 /8;
-        grid-row: 3;
+
+    input{
+        height: 4vw;
     }
-    
-    .contact--additional_info{
-        grid-column: 3 / 7;
-        grid-row: 5/ 6;
-    }
-    
-    .contact--additional_info--email{
-        grid-column: 3 / 7;
-        grid-row: 6;
-    }
-    
-    .contact--additional_info--subsection{
-        grid-column: 3 / 7;
-        grid-row: 7;
-    }
-    
 }
