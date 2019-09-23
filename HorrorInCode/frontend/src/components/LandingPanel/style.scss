@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 7vh;
+  margin-top: 17vh;
 
   position: absolute;
   width: 100%;
@@ -37,6 +37,9 @@
 
 @media (max-width: 1800px){
   .landingPanel {
+
+    margin-top: 20vh;
+
     h1{
       font-size: calc(3em + 2vw);
     }
@@ -44,5 +47,9 @@
     h2{
       font-size: calc(1em + 1vw);
     }
+  }
+
+  .text-field{
+    width: 70%;
   }
 }
