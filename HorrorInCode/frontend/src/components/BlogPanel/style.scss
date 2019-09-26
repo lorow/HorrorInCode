@@ -38,6 +38,8 @@
     position: relative;
     transition: all .5s;
 
+    transform-origin: bottom;
+
     &:hover{
         transform: scale3d(1.05, 1.05, 1.05);
     }
