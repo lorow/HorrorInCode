@@ -6,7 +6,7 @@ import './style.scss';
 
 import LandingPanel from '../LandingPanel';
 import BlogPanel from '../BlogPanel';
-import ProjectsPanel from '../ProjectsPanel';
+import ProjectsPanel from '../../containers/ProjectsPanelContainer';
 import AboutPanel from '../AboutPanel';
 import ContactPanelContainer from '../../containers/ContactPanelContainer';
 import Navbar from '../Navbar';

@@ -1,5 +1,4 @@
 .project__section{
-
     position: absolute;
     top: 0;
     width: 100%;
@@ -17,15 +16,6 @@
 
 .project__button--next{
     margin-left: 25vw;
-}
-
-@media (max-width: 1700px){
-    .project__button--previous{
-        grid-column:5;
-    }
-    .project__button--next{
-    grid-column: 9;
-    }
 }
 
 .project__title{
@@ -49,8 +39,6 @@
 
     align-items: center;
     justify-content: center;
-
-    position: absolute;
 }
 
 .project__cover{
@@ -72,6 +60,4 @@
 
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: 50% 50%;
-  cursor: pointer;
 }
