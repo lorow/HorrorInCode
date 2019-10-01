@@ -1,39 +1,14 @@
 import React, { useState }from 'react';
-import anime from 'animejs';
+import projectsDataPile from './data.js'
+import { prepareAnimation } from './utils.js'
 import ProjectSlice from '../../components/ProjectSlice';
-import './style.scss';
+import ProjectDetail from '../../components/ProjectDetail';
+import '../../components/ProjectSlice/style.scss';
 
 export default function ProjectsPanel(props) {
 
   const [expanded, setExpanded] = useState(false);
-  
-  const prepareAnimation = direction => {
-    let timeline = anime.timeline({
-      duration: 1000,
-      autoplay: false,
-      direction: direction,
-    })
-  
-    timeline.add({
-    
-      duration:750,
-      targets: '.project__cover',
-      overflowX:'hidden',
-  
-      width:['60vh', '300vh'],
-      height:['60vh', '100vh'],
-      borderRadius:['100%','0%'],
-  
-      easing: 'cubicBezier(0.620, -0.420, 0.390, 1.385)'
-  
-    }).add({
-      targets:'.project__title',
-      color: ['rgba(255, 255, 255, 0.7)', 'rgba(255, 255, 255, 1)'],
-      top: ['37.9vh', '28vh'],
-      easing: 'cubicBezier(0.315, 0.000, 0.330, 0.825)'
-    })
-    return timeline
-  }
+  const [activeProjectIndex, setActiveProjectIndex] = useState(0);
 
   const handleImageResize = () =>{
 
@@ -43,9 +18,46 @@ export default function ProjectsPanel(props) {
   
   }
 
-  return (
-    <section className="project__section">
-      <ProjectSlice handleImageResize={handleImageResize}/>
-    </section>
-  );
+  const switchProject = direction => {
+
+    let nextIndex = 0;
+
+    if(direction==="previous")
+      nextIndex = Math.abs(activeProjectIndex - 1);
+    else
+      nextIndex = activeProjectIndex + 1;
+
+    if (nextIndex > projectsDataPile.length -1)
+      nextIndex = 0;
+
+    if (activeProjectIndex === 0 && nextIndex === 1 && direction==="previous")
+      nextIndex = 2;
+
+    setActiveProjectIndex(nextIndex);
+  }
+
+  if (! expanded)
+    return (
+      <section className="project__section">
+        <ProjectSlice 
+          handleImageResize={handleImageResize}
+          PreviousProject={() => switchProject("previous")}
+          NextProject={() => switchProject("next")}
+          {...projectsDataPile[activeProjectIndex]}
+          />
+      </section>
+    );
+  else
+    return (
+      <section className="project__section">
+        <ProjectSlice 
+          handleImageResize={handleImageResize}
+          PreviousProject={() => switchProject("previous")}
+          NextProject={() => switchProject("next")}
+          {...projectsDataPile[activeProjectIndex]}
+          />
+        
+        <ProjectDetail {...projectsDataPile[activeProjectIndex]} />
+      </section>
+    );
 }
