@@ -25,11 +25,11 @@
     margin-top: 2%;
     width: 43%;
     
-    @media screen and (max-width: 1870px) {
-        grid-template-columns: none;
-        width: 60%;
-        grid-template-rows: repeat(3, minmax(400px,1fr));
-    }
+    // @media screen and (max-width: 1870px) {
+    //     grid-template-columns: none;
+    //     width: 60%;
+    //     grid-template-rows: repeat(3, minmax(400px,1fr));
+    // }
 }
 
 .blog__article{

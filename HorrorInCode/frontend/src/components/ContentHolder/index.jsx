@@ -5,7 +5,7 @@ import { TransitionGroup , Transition } from 'react-transition-group';
 import './style.scss';
 
 import LandingPanel from '../LandingPanel';
-import BlogPanel from '../BlogPanel';
+import BlogPanel from '../../containers/BlogContainer';
 import ProjectsPanel from '../../containers/ProjectsPanelContainer';
 import AboutPanel from '../AboutPanel';
 import ContactPanelContainer from '../../containers/ContactPanelContainer';
