@@ -10,8 +10,7 @@ export default function ProjectDetail(props) {
   }
   
   let photos = props.projectScreenshots.map( (url, index) => getPhotoTile(url, index) )
-  console.log(photos)
-
+  
   return(
     <section className="projectDetail__contener">
       <header className="projectDetail__header">

@@ -24,14 +24,14 @@ function Navbar(props) {
               </ul>
             </div>
             <a className="uk-navbar-toggle uk-hidden@m" href="localhost" uk-toggle="target: #offcanvas-nav-primary">
-              <span uk-navbar-toggle-icon></span> <span className="uk-margin-small-left"><img src="img/menu.svg" alt="Menu"/></span>
+              <span uk-navbar-toggle-icon="true"></span> <span className="uk-margin-small-left"><img src="img/menu.svg" alt="Menu"/></span>
             </a>
           </div>
         </nav>
       </div>
 
       <div id="offcanvas-nav-primary" uk-offcanvas="overlay: true">
-          <button className="uk-offcanvas-close uk-close uk-icon" type="button" uk-close=""><svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg" data-svg="close-icon"><line fill="none" stroke="#000" stroke-width="1.1" x1="1" y1="1" x2="13" y2="13"></line><line fill="none" stroke="#000" stroke-width="1.1" x1="13" y1="1" x2="1" y2="13"></line></svg></button>
+          <button className="uk-offcanvas-close uk-close uk-icon" type="button" uk-close=""><svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg" data-svg="close-icon"><line fill="none" stroke="#000" strokeWidth="1.1" x1="1" y1="1" x2="13" y2="13"></line><line fill="none" stroke="#000" strokeWidth="1.1" x1="13" y1="1" x2="1" y2="13"></line></svg></button>
           <div className="uk-offcanvas-bar uk-flex uk-flex-column uk-width-1-1" style={{backgroundColor: '#3253FB'}}>
               <ul className="uk-nav uk-nav-primary uk-nav-center uk-margin-auto-vertical">
               make a function that will handle closing of the offcanvas without the use of "uk-close"

@@ -4,7 +4,6 @@ import BlogSlice from '../../components/BlogSlice';
 
 export default function BlogPanel(props) {
     
-    
     return (
         <section className="blog-section">
             <h1 className="blog__section__title">Latest articles</h1>
