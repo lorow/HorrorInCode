@@ -16,6 +16,7 @@ const TextDisplay = styled.p`
   font-size: calc(2rem + 9vw);
   margin-left: 40px;
   margin-right: 40px;
+  user-select: none;
 `;
 
 export default function MiddleBilboardText({ textToDIsplay, offsetBy }) {
@@ -25,7 +26,7 @@ export default function MiddleBilboardText({ textToDIsplay, offsetBy }) {
       <TextDisplay>{textToDIsplay}</TextDisplay>
       <TextDisplay>{textToDIsplay}</TextDisplay>
       <TextDisplay>{textToDIsplay}</TextDisplay>
-
+      <TextDisplay>{textToDIsplay}</TextDisplay>
     </ TextContainer>
   )
 }

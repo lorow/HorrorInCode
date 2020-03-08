@@ -4,16 +4,18 @@ import styled from 'styled-components';
 
 const NavbarContainer = styled.div`
   position: absolute;
-  top: 62px;
-  right: 190px;
+  top: 50px;
+  right: 15vw;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: 1fr;
-  grid-gap: 40px;
+  grid-gap: 10px;
 `;
 
 const Navlink = styled.a`
   color: white;
+  font-size: 20px;
+  text-align: center;
   opacity: ${props => props.isActive ? 1 : .5};
 `;
 
