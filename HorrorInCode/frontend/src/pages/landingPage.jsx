@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import MiddleBilboardText from '../components/middleBilboardText';
 import Greeter from '../components/greeter';
 
 const Main = styled.main`
@@ -22,7 +21,6 @@ export default function LandingPage(props) {
   return (
     <Main>
       <Greeter />
-      <MiddleBilboardText textToDIsplay={"My work"} />
     </Main>
   );
 }

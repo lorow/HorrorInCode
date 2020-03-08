@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const GreeterContainer = styled.div`
+  margin-top: 10px;
   grid-area: navigation;
   color: white;
 `;
