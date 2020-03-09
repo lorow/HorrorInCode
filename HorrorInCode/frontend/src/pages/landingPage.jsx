@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Greeter from '../components/greeter';
+import Pagination from '../components/pagination';
 
 const Main = styled.main`
   min-height: 100%;
@@ -21,6 +22,7 @@ export default function LandingPage(props) {
   return (
     <Main>
       <Greeter />
+      <Pagination />
     </Main>
   );
 }

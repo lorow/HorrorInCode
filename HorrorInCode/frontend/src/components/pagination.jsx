@@ -21,8 +21,8 @@ const Dots = styled.div``;
 export default function Pagination({ onClickPrev, onClickNext }) {
   return (
     <PaginationContainer>
-      <Button>&#x3c;</Button>
-      <Button>&#62;</Button>
+      <Button onClick={onClickPrev}>&#x3c;</Button>
+      <Button onClick={onClickNext}>&#62;</Button>
     </PaginationContainer>
   )
 }
