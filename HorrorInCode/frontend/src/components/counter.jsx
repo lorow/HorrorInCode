@@ -13,6 +13,10 @@ const CounterContainer = styled.div`
   left: 10%;
   bottom: 0;
   width: 60px;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const Spike = styled.div`
