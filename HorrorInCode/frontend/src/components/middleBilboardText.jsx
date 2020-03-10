@@ -9,6 +9,7 @@ const TextContainer = styled.div`
   position: fixed;
   top: 0;
   bottom: 0;
+  z-index: 0;
   align-items: center;
   transform: translateX(${props => props.offsetBy});
 `;
