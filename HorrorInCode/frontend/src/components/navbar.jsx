@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const HamburgerButton = styled.button`
@@ -72,11 +72,16 @@ const Navlink = styled.a`
   color: white;
   font-size: 20px;
   text-align: center;
+  text-decoration: none;
   opacity: ${props => props.isActive ? 1 : .5};
 
   transition: .2s all;
   &:hover{
     transform: translateY(-3px);
+  }
+  
+  &:active{
+    opacity: .8;
   }
 `;
 
@@ -95,7 +100,7 @@ export default function Navbar(props) {
         <Navlink isActive>Works</Navlink>
         <Navlink>About</Navlink>
         <Navlink>Blog</Navlink>
-        <Navlink>Resume</Navlink>
+        <Navlink href="/Zdzislaw_Goik_CV.pdf" download="zdzislaw_goik_cv" >Resume</Navlink>
       </NavbarContainer>
     </>
   )
