@@ -18,7 +18,7 @@ const Main = styled.main`
   "nothing-left     bottom    nothing-right";
 
   @media (max-width: 768px) {
-    grid-template-columns: 0px 1fr 0px;
+    grid-template-columns: 30px 1fr 30px;
   }
 `;
 

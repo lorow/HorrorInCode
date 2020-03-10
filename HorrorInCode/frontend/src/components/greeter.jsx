@@ -14,17 +14,17 @@ const InlineText = styled.div`
   margin-bottom: 20px;
 `;
 
-const HiMark = styled.h1`
-  font-size: calc(50px);
-  line-height: 39px;
+const HiMark = styled.p`
+  font-size: calc(2rem + 1vw);
+  font-weight: 700;
+  line-height: 40px;
 `;
 
 const GreeterText = styled.p`
-  font-size: 33px;
   text-align: left;
   margin-left:${props => props.displayName ? "10px" : "0"}; 
-  line-height:${props => props.displayName ? "20px" : "33px"};
-  font-size: ${props => props.displayName ? "30px" : "25px"};
+  line-height:${props => props.displayName ? "8px" : "33px"};
+  font-size: ${props => props.displayName ? "calc(1.5rem + 0.5vw)" : "calc(1rem + .5vw);"};
   opacity: ${props => props.displayName ? 1 : 0.8};
 `;
 
