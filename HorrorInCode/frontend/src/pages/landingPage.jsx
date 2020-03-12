@@ -7,7 +7,6 @@ const Main = styled.main`
   height: 100vh;
   width: 100vw;
   overflow: hidden;
-  background: linear-gradient(240.48deg, #091430 0.49%, rgba(9, 20, 48, 0.97) 100%);
   display: grid;
   grid-template-columns: minmax(10px, 8vw) minmax(400px, 1fr) minmax(10px, 8vw);
   grid-template-rows: 0.4fr 1fr 3fr 1fr;
