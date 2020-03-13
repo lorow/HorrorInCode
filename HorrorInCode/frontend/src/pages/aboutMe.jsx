@@ -7,10 +7,16 @@ const Layout = styled.main`
   width: 100vw;
 
   display: grid;
-  grid-template-columns: .5fr 1fr;
+  grid-template-columns: .8fr 1fr .3fr;
   grid-gap: 10px;
-  grid-template-rows: .3fr 3fr .5fr .4fr .6fr;
-  grid-template-areas: "spacer spacer" "imageSection about" "button button"  "social social";
+  grid-template-rows: .9fr 1.2fr .8fr 1.2fr .6fr;
+  grid-template-areas: "spacer spacer" "imageSection about" "social button"  "empty empty";
+  grid-gap: 10px;
+  @media (max-width: 768px) {
+    grid-template-columns: .5fr 1fr;
+    grid-template-rows: .1fr .3fr .1fr;
+    grid-template-areas: "spacer spacer" "imageSection about" "button button"  "social social";
+  }
 `;
 
 const TextContainer = styled.div`
@@ -22,19 +28,29 @@ const TextContainer = styled.div`
 
   p {
     opacity: .8;
-    font-size: 14px;
+    font-size: calc(.8em + .2vw);
     margin-bottom: 10px;
   }
 `;
 
 const SectionTitle = styled.h2`
-  font-size: 30px;
+  font-size: calc(2rem + 1.5vw);
   font-weight: 600;
   color: white;
 `;
 
 const DimmedImage = styled.img`
   grid-area: imageSection;
+  margin-left: auto;
+  margin-right: 40px;
+  width: 200px;
+  /* margin-bottom: auto; */
+
+  @media(max-width: 768px){
+    width: 120px;
+    margin-right: 10px;
+    margin-left: 10px;
+  }
 `;
 
 const EmailButton = styled(PrimaryButton)`
@@ -42,15 +58,14 @@ const EmailButton = styled(PrimaryButton)`
   z-index: 2;
   margin-left: auto;
   margin-right: auto;
-  width: 150px;
-  height: 40px;
+
 `;
 
 export default function AboutMe(props) {
 
   return (
     <Layout>
-      <DimmedImage />
+      <DimmedImage src="http://placekitten.com/200/300" />
       <TextContainer>
         <SectionTitle>About me</SectionTitle>
         <p>
@@ -66,7 +81,7 @@ export default function AboutMe(props) {
           {`But work isn't the only thing that makes life worth living, I love to 3D print all the things, and shred snow my board in the season.`}
         </p>
       </TextContainer >
-      <EmailButton themeSmall >Shoot me an email!</EmailButton>
-    </Layout> 
+      <EmailButton >Shoot me an email!</EmailButton>
+    </Layout>
   )
 }
