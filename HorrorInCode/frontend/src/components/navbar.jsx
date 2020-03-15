@@ -1,6 +1,8 @@
 import React, { useState, useCallback } from 'react';
-// import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import { Link, withRouter } from 'react-router-dom';
+import styled, { css } from 'styled-components';
+import { routes } from '../routes';
+
 
 const HamburgerButton = styled.button`
   position: fixed;
@@ -68,7 +70,7 @@ const NavbarContainer = styled.div`
   }
 `;
 
-const Navlink = styled.a`
+const commonLinkStyle = css`
   color: white;
   font-size: 20px;
   text-align: center;
@@ -82,10 +84,18 @@ const Navlink = styled.a`
   
   &:active{
     opacity: .8;
-  }
+  }`;
+
+const Navlink = styled.a`
+  ${commonLinkStyle}
 `;
 
-export default function Navbar(props) {
+const RouterNavlink = styled(Link)`
+  ${commonLinkStyle}
+`;
+
+
+function Navbar(props) {
   const [shouldMenuOpen, setShouldMenuOpen] = useState(false);
 
   const toggleMenu = useCallback(() => {
@@ -97,11 +107,20 @@ export default function Navbar(props) {
       <HamburgerButton onClick={toggleMenu}></HamburgerButton>
       <NavbarContainer shouldMenuDisplay={shouldMenuOpen}>
         <CloseHamburgerMenu onClick={toggleMenu}>X</CloseHamburgerMenu>
-        <Navlink isActive>Works</Navlink>
-        <Navlink>About</Navlink>
-        <Navlink>Blog</Navlink>
+        {
+          routes.map(({ path, name }) => <RouterNavlink
+            key={path + name}
+            to={path}
+            isActive={props.location.pathname === path}
+          >
+            {name}
+          </RouterNavlink>
+          )
+        }
         <Navlink href="/Zdzislaw_Goik_CV.pdf" download="zdzislaw_goik_cv" >Resume</Navlink>
       </NavbarContainer>
     </>
   )
 }
+
+export default withRouter(Navbar);

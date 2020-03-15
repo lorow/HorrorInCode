@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import Greeter from '../components/greeter';
 import Pagination from '../components/pagination';
+import { setBackgroundText } from '../actions/pageActions';
 
 const Main = styled.main`
   height: 100vh;
   width: 100vw;
+  position: relative;
+  z-index: 3;
   overflow: hidden;
   display: grid;
   grid-template-columns: minmax(10px, 8vw) minmax(400px, 1fr) minmax(10px, 8vw);
@@ -22,6 +26,12 @@ const Main = styled.main`
 `;
 
 export default function LandingPage(props) {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setBackgroundText("MY WORKS"))
+  }, [dispatch]);
+
   return (
     <Main>
       <Greeter />

@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { setBackgroundText } from '../actions/pageActions';
 import { PrimaryButton } from '../components/button';
 import styled from 'styled-components';
 
 const Layout = styled.main`
   height: 100vh;
   width: 100vw;
-
+  position: relative;
+  z-index: 3;
   display: grid;
   grid-template-columns: .8fr 1fr .3fr;
   grid-gap: 10px;
@@ -44,7 +47,6 @@ const DimmedImage = styled.img`
   margin-left: auto;
   margin-right: 40px;
   width: 200px;
-  /* margin-bottom: auto; */
 
   @media(max-width: 768px){
     width: 120px;
@@ -55,13 +57,18 @@ const DimmedImage = styled.img`
 
 const EmailButton = styled(PrimaryButton)`
   grid-area: button;
-  z-index: 2;
   margin-left: auto;
   margin-right: auto;
 
 `;
 
 export default function AboutMe(props) {
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setBackgroundText("ABOUT ME"))
+  }, [dispatch])
 
   return (
     <Layout>
