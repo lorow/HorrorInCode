@@ -460,3 +460,7 @@ textarea {
 .bigCollapse {
   grid-column: span 4;
 }
+
+.slick-slide img {
+  margin: auto;
+}

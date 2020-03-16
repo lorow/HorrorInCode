@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import Greeter from '../components/greeter';
 import Pagination from '../components/pagination';
+import ProjectSelect from '../components/projectSelect';
 import { setBackgroundText } from '../actions/pageActions';
 
 const Main = styled.main`
@@ -28,6 +29,16 @@ const Main = styled.main`
 export default function LandingPage(props) {
   const dispatch = useDispatch();
 
+  const [slideId, setSlideId] = useState(0);
+
+  const onClickNext = () => {
+    setSlideId(slideId + 1);
+  }
+
+  const onClickPrev = () => {
+    setSlideId(slideId - 1);
+  }
+
   useEffect(() => {
     dispatch(setBackgroundText("MY WORKS"))
   }, [dispatch]);
@@ -35,7 +46,8 @@ export default function LandingPage(props) {
   return (
     <Main>
       <Greeter />
-      <Pagination />
+      <ProjectSelect slideId={slideId} setSlideId={setSlideId} />
+      <Pagination onClickPrev={onClickPrev} onClickNext={onClickNext} />
     </Main>
   );
 }
