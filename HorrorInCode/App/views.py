@@ -9,11 +9,6 @@ from rest_framework import status
 from .models import UserProfile
 
 
-class UserProfileView(viewsets.ModelViewSet):
-    queryset = UserProfile.objects.all()
-    serializer_class = UserProfileSerializer
-
-
 class SendEmailAPI(APIView):
     permission_classes = (AllowAny,)
 
@@ -30,4 +25,4 @@ class SendEmailAPI(APIView):
         serializer = self.InputSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         send_email(**serializer.validated_data)
-        return Response(data={"status": "message send"},status=status.HTTP_200_OK)
+        return Response(data={"status": "message send"}, status=status.HTTP_200_OK)
