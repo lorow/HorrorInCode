@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
-import JWTTokenReducer from './JWTTokenReducer'
+import { PageReducer } from './pageReducer';
 
 export default combineReducers({
-    JWTTokenReducer,
+  pageInfo: PageReducer,
 })
