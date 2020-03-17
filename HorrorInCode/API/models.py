@@ -8,13 +8,22 @@ class Project(models.Model):
     description = models.TextField(blank=True, null=True)
     cover = models.ImageField(blank=True, null=True)
 
+    def __str__(self):
+        return self.name
+    
 
 class Tag(models.Model):
     name = models.CharField(max_length=30)
 
+    def __str__(self):
+        return self.name
+    
 
 class Article(models.Model):
     published_date = models.DateField(default=datetime.now)
     title = models.CharField(max_length=200)
     description = models.TextField(blank=True, null=True)
     tags = models.ManyToManyField(Tag, related_name="tags")
+
+    def __str__(self):
+        return self.title
