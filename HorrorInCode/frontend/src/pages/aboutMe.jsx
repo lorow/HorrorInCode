@@ -47,6 +47,8 @@ const DimmedImage = styled.img`
   margin-left: auto;
   margin-right: 40px;
   width: 200px;
+  -webkit-mask-image: -webkit-gradient(linear, left top, 
+    left bottom, from(rgba(0,0,0,.9)), to(rgba(0,0,0, 0)));
 
   @media(max-width: 768px){
     width: 120px;
@@ -57,9 +59,10 @@ const DimmedImage = styled.img`
 
 const EmailButton = styled(PrimaryButton)`
   grid-area: button;
+  @media(max-width: 768px){
   margin-left: auto;
   margin-right: auto;
-
+  }
 `;
 
 export default function AboutMe(props) {

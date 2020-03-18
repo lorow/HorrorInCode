@@ -53,7 +53,7 @@ const NavbarContainer = styled.div`
   grid-template-rows: 1fr;
   grid-gap: 10px;
 
-  @media (max-width: 650px) {
+  @media (max-width: 768px) {
     background: linear-gradient(240.48deg, #091430 0.20%, rgba(9, 20, 48, 0.90) 100%);
     display: ${props => props.shouldMenuDisplay ? "grid" : "none"};
     grid-auto-flow: row;
