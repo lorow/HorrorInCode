@@ -20,6 +20,10 @@ const ProjectName = styled.h2`
   z-index: 1;
   grid-row: 1;
   grid-column: 2 / 4;
+
+  @media (max-width: 550px) {
+    margin-top: 0;
+  }
 `;
 
 const ProjectSlider = styled.div`

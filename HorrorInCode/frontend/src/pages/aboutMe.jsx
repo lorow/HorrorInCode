@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { setBackgroundText } from '../actions/pageActions';
+import { setBackgroundText, setVisualPageIndex } from '../actions/pageActions';
 import { PrimaryButton } from '../components/button';
 import styled from 'styled-components';
 
@@ -67,7 +67,8 @@ export default function AboutMe(props) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(setBackgroundText("ABOUT ME"))
+    dispatch(setBackgroundText("ABOUT ME"));
+    dispatch(setVisualPageIndex("02"));
   }, [dispatch])
 
   return (

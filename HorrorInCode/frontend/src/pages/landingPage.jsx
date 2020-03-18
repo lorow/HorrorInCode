@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Greeter from '../components/greeter';
 import Pagination from '../components/pagination';
 import ProjectSelect from '../components/projectSelect';
-import { setBackgroundText } from '../actions/pageActions';
+import { setBackgroundText, setVisualPageIndex } from '../actions/pageActions';
 
 const Main = styled.main`
   height: 100vh;
@@ -14,6 +14,7 @@ const Main = styled.main`
   overflow: hidden;
   display: grid;
   grid-template-columns: minmax(10px, 8vw) minmax(400px, 1fr) minmax(10px, 8vw);
+  grid-gap: 20px;
   grid-template-rows: 0.4fr 1fr 3fr 1fr;
   grid-template-areas:
   "nothing-left-top       top     nothing-right-top"
@@ -40,7 +41,8 @@ export default function LandingPage(props) {
   }
 
   useEffect(() => {
-    dispatch(setBackgroundText("MY WORKS"))
+    dispatch(setBackgroundText("MY WORKS"));
+    dispatch(setVisualPageIndex("01"));
   }, [dispatch]);
 
   return (

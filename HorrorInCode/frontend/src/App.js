@@ -30,7 +30,7 @@ function App() {
           }
         </Switch>
 
-        <Counter pageNumber={"01"} />
+        <Counter pageNumber={PageInfo.visualPageIndex} />
       </Background>
     </Router>
   )
