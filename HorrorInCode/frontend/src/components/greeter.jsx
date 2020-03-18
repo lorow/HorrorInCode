@@ -15,28 +15,27 @@ const InlineText = styled.div`
 `;
 
 const HiMark = styled.p`
-  font-size: calc(2rem + 1vw);
+  font-size: calc(1.8rem + 1vw);
   font-weight: 700;
   line-height: 40px;
 `;
 
 const GreeterText = styled.p`
   text-align: left;
-  margin-left:${props => props.displayName ? "10px" : "0"}; 
-  line-height:${props => props.displayName ? "8px" : "33px"};
-  font-size: ${props => props.displayName ? "calc(1.8rem + 0.5vw)" : "calc(1rem + .5vw);"};
-  color: ${props => props.displayName ? "white" : "#efefff"};
-  opacity: ${props => props.displayName ? 1 : 0.8};
+  margin-left:0; 
+  line-height: 33px;
+  font-size: calc(.8rem + .5vw);
+  color: white;
+  opacity:  0.7;
 `;
 
 export default function Greeter(props) {
   return (
     <GreeterContainer>
       <InlineText>
-        <HiMark>Hi!</HiMark>
-        <GreeterText displayName>I’m Zdzisław.</GreeterText>
+        <HiMark>Hello there</HiMark>
       </InlineText>
-      <GreeterText>I’m a passionate developer from Poland.</GreeterText>
+      <GreeterText>I’m Zdzisław, and I'm a passionate developer from Poland.</GreeterText>
       <GreeterText>I love what I do and I strive to get better every day.</GreeterText>
     </GreeterContainer>
   )

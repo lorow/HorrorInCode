@@ -23,7 +23,7 @@ class Article(models.Model):
     published_date = models.DateField(default=datetime.now)
     title = models.CharField(max_length=200)
     description = models.TextField(blank=True, null=True)
-    tags = models.ManyToManyField(Tag, related_name="tags")
+    tags = models.ManyToManyField(Tag, related_name="tags", blank=True)
 
     def __str__(self):
         return self.title
