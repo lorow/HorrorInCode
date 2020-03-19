@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import Greeter from '../components/greeter';
 import Pagination from '../components/pagination';
 import ProjectSelect from '../components/projectSelect';
-import { setBackgroundText, setVisualPageIndex } from '../actions/pageActions';
+import { setBackgroundText, setVisualPageIndex, completePageTransition } from '../actions/pageActions';
 
 const Main = styled.main`
   height: 100vh;
@@ -29,6 +29,7 @@ const Main = styled.main`
 
 export default function LandingPage(props) {
   const dispatch = useDispatch();
+  const pageInfo = useSelector(state => state.pageInfo);
 
   const [slideId, setSlideId] = useState(0);
 
@@ -44,6 +45,19 @@ export default function LandingPage(props) {
     dispatch(setBackgroundText("MY WORKS"));
     dispatch(setVisualPageIndex("01"));
   }, [dispatch]);
+
+  useEffect(() => {
+
+    if (pageInfo.isTransitioning) {
+      // launch an async exiting animation, and then, in promise call dispatch
+      // with complete_page_transition
+      dispatch(completePageTransition());
+    }
+    else {
+      // do the entering animation
+    }
+
+  }, [pageInfo])
 
   return (
     <Main>

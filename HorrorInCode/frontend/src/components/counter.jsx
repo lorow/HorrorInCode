@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { motion, useAnimation } from 'framer-motion';
 import styled from 'styled-components';
 
 const CounterContainer = styled.div`
@@ -35,9 +36,24 @@ const NumberDisplay = styled.p`
 `;
 
 export default function Counter({ pageNumber }) {
+  const fadeNumberControl = useAnimation();
+
+  const [currentNumber, setCurrentNumber] = useState("00");
+
+  useEffect(() => {
+    async function animateNumber() {
+      await fadeNumberControl.start({ opacity: 0 })
+      setCurrentNumber(pageNumber);
+      await fadeNumberControl.start({ opacity: 1 });
+    };
+    animateNumber();
+  }, [pageNumber])
+
   return (
     <CounterContainer>
-      <NumberDisplay>{pageNumber}</NumberDisplay>
+      <motion.div animate={fadeNumberControl}>
+        <NumberDisplay>{currentNumber}</NumberDisplay>
+      </motion.div>
       <Spike />
     </CounterContainer>
   )

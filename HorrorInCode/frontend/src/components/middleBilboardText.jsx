@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { motion, useAnimation } from 'framer-motion';
 import styled from 'styled-components';
 
-const TextContainer = styled.div`
+const TextContainer = styled(motion.div)`
   grid-area: nothingLeftMain;
   width: auto;
   grid-column: span 3;
@@ -25,12 +26,25 @@ const TextDisplay = styled.p`
 `;
 
 export default function MiddleBilboardText({ textToDIsplay, offsetBy }) {
+  const [pageNote, setPageNote] = useState("")
+  const TextControl = useAnimation();
+
+  useEffect(() => {
+    async function animateText() {
+      await TextControl.start({ opacity: 0 });
+      setPageNote(textToDIsplay);
+      await TextControl.start({ opacity: 1 });
+    }
+    animateText();
+
+  }, [textToDIsplay])
+
   return (
-    <TextContainer offsetBy={offsetBy ? offsetBy : '-250px'}>
-      <TextDisplay>{textToDIsplay}</TextDisplay>
-      <TextDisplay>{textToDIsplay}</TextDisplay>
-      <TextDisplay>{textToDIsplay}</TextDisplay>
-      <TextDisplay>{textToDIsplay}</TextDisplay>
+    <TextContainer animate={TextControl} offsetBy={offsetBy ? offsetBy : '-250px'}>
+      <TextDisplay>{pageNote}</TextDisplay>
+      <TextDisplay>{pageNote}</TextDisplay>
+      <TextDisplay>{pageNote}</TextDisplay>
+      <TextDisplay>{pageNote}</TextDisplay>
     </ TextContainer>
   )
 }

@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux'
-import { HashRouter as Router, Switch, Route } from 'react-router-dom';
+import { Router, Switch, Route } from 'react-router-dom';
 import Navbar from './components/navbar';
 import MiddleBilboardText from './components/middleBilboardText';
 import Counter from './components/counter';
+import { history } from './history';
 import { routes } from './routes';
 import './App.css';
 
@@ -19,7 +20,7 @@ function App() {
 
   const PageInfo = useSelector(state => state.pageInfo)
   return (
-    <Router>
+    <Router history={history}>
       <Background>
         <Navbar />
         <MiddleBilboardText textToDIsplay={PageInfo.backgroundText} />

@@ -1,6 +1,8 @@
 import React, { useState, useCallback } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import styled, { css } from 'styled-components';
+import { initPageTransition } from '../actions/pageActions';
+import { useDispatch } from 'react-redux';
 import { routes } from '../routes';
 
 
@@ -90,10 +92,6 @@ const Navlink = styled.a`
   ${commonLinkStyle}
 `;
 
-const RouterNavlink = styled(Link)`
-  ${commonLinkStyle}
-`;
-
 
 function Navbar(props) {
   const [shouldMenuOpen, setShouldMenuOpen] = useState(false);
@@ -102,20 +100,24 @@ function Navbar(props) {
     setShouldMenuOpen(prev => !prev);
   }, [])
 
+  const dispatch = useDispatch();
+
   return (
     <>
       <HamburgerButton onClick={toggleMenu}></HamburgerButton>
       <NavbarContainer shouldMenuDisplay={shouldMenuOpen}>
         <CloseHamburgerMenu onClick={toggleMenu}>X</CloseHamburgerMenu>
         {
-          routes.map(({ path, name }) => <RouterNavlink
-            key={path + name}
-            to={path}
-            isActive={props.location.pathname === path}
-          >
-            {name}
-          </RouterNavlink>
-          )
+          routes.map(({ path, name }) => (
+            <Navlink
+              onClick={() => { dispatch(initPageTransition(path)) }}
+              key={path + name}
+
+              isActive={props.location.pathname === path}
+            >
+              {name}
+            </Navlink>
+          ))
         }
         <Navlink href="/Zdzislaw_Goik_CV.pdf" download="zdzislaw_goik_cv" >Resume</Navlink>
       </NavbarContainer>
