@@ -33,7 +33,7 @@ export default function MiddleBilboardText({ textToDIsplay, offsetBy }) {
     async function animateText() {
       await TextControl.start({ opacity: 0 });
       setPageNote(textToDIsplay);
-      await TextControl.start({ opacity: 1 });
+      await TextControl.start({ opacity: 1, translateY: [10, 0] });
     }
     animateText();
 
