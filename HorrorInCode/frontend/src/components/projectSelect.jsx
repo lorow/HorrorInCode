@@ -21,6 +21,7 @@ const ProjectName = styled.h2`
   grid-row: 1;
   grid-column: 2 / 4;
 
+  height: min-content;
   @media (max-width: 550px) {
     margin-top: 0;
   }
@@ -66,13 +67,13 @@ export default function ProjectSelect(props) {
             props.setSlideId(id)
           }}
         >
-          <ProjectLink>
+          <ProjectLink onClick={() => props.onClick(0)}>
+            <img src={"https://placebear.com/864/550"} alt="kotek" />
+          </ProjectLink>
+          <ProjectLink onClick={() => props.onClick(1)}>
             <img src={"http://placekitten.com/864/550"} alt="kotek" />
           </ProjectLink>
-          <ProjectLink>
-            <img src={"http://placekitten.com/864/550"} alt="kotek" />
-          </ProjectLink>
-          <ProjectLink>
+          <ProjectLink onClick={() => props.onClick(2)}>
             <img src={"http://placekitten.com/864/550"} alt="kotek" />
           </ProjectLink>
         </Carousel>

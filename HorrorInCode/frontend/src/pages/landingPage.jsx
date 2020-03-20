@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Greeter from '../components/greeter';
 import Pagination from '../components/pagination';
 import ProjectSelect from '../components/projectSelect';
+import WorkDetail from '../components/workDetail';
 import { setBackgroundText, setVisualPageIndex, completePageTransition } from '../actions/pageActions';
 
 const Main = styled.main`
@@ -32,6 +33,7 @@ export default function LandingPage(props) {
   const pageInfo = useSelector(state => state.pageInfo);
 
   const [slideId, setSlideId] = useState(0);
+  const [projectVisible, setProjectVisible] = useState({ state: false, projectId: -1 });
 
   const onClickNext = () => {
     setSlideId(slideId + 1);
@@ -39,6 +41,14 @@ export default function LandingPage(props) {
 
   const onClickPrev = () => {
     setSlideId(slideId - 1);
+  }
+
+  const onProjectClick = (projectID) => {
+    // the user decided that they want to see that project, fair enough,
+    // set the id first, so that the useEffect can trigger and handle 
+    // animating everything out
+    if (!projectVisible.state)
+      setProjectVisible({ ...projectVisible, projectId: projectID })
   }
 
   useEffect(() => {
@@ -59,11 +69,27 @@ export default function LandingPage(props) {
 
   }, [pageInfo])
 
+  useEffect(() => {
+    // triggers only if the project updates
+    if (!projectVisible.state && projectVisible.projectId !== -1) {
+      //  we only do stuff if both: the id is not negative and we haven't animated anything yet
+      // second rule indicated by the state field
+
+      // if so, animate everything out and let the project panel show itself
+      // animateProjectEntry();
+      setProjectVisible({ ...projectVisible, state: true })
+    }
+  }, [projectVisible])
+
   return (
     <Main>
       <Greeter />
-      <ProjectSelect slideId={slideId} setSlideId={setSlideId} />
+      <ProjectSelect onClick={onProjectClick} slideId={slideId} setSlideId={setSlideId} />
       <Pagination onClickPrev={onClickPrev} onClickNext={onClickNext} />
+      {
+        projectVisible.state &&
+        <WorkDetail projectID={projectVisible.projectId} />
+      }
     </Main>
   );
 }
