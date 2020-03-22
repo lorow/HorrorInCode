@@ -5,15 +5,19 @@ const landingPage = {
   in: i => ({
     opacity: [0, 1],
     transition: {
-      delay: i * .8
-    }
+      delay: i * .5,
+      duration: .6,
+    },
+
   }),
 
   out: i => ({
     opacity: [1, 0],
     transition: {
-      delay: i * 0.3
-    }
+      delay: i * 0.1,
+      duration: .2
+    },
+
   }),
 
   projectShowUp: {
@@ -28,14 +32,16 @@ const blogPage = {
   in: i => ({
     opacity: [0, 1],
     transition: {
-      delay: i * .8
+      delay: i * .5,
+      duration: .4,
     }
   }),
 
   out: i => ({
     opacity: [1, 0],
     transition: {
-      delay: i * 0.3
+      delay: i * 0.1,
+      duration: .2
     }
   }),
 }
@@ -54,7 +60,8 @@ const aboutPage = {
   out: i => ({
     opacity: [1, 0],
     transition: {
-      delay: i * 0.3
+      delay: i * 0.1,
+      duration: .2
     }
   }),
 }
