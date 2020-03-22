@@ -79,10 +79,10 @@ export default function AboutMe(props) {
 
   return (
     <Layout variants={animVariants} initial="initial" animate="in" exit="out">
-      <DimmedImage custom={1} src="http://placekitten.com/200/300" />
+      <DimmedImage custom={1} variants={animVariants} src="http://placekitten.com/200/300" />
       <TextContainer>
-        <SectionTitle custom={0}>About me</SectionTitle>
-        <motion.div custom={3}>
+        <SectionTitle custom={0} variants={animVariants}>About me</SectionTitle>
+        <motion.div custom={0} variants={animVariants}>
           <p>
             {"Like I said at the beginning, I’m Zdzisław Goik. I’m a passionate developer born in Poland."}
           </p>
@@ -97,7 +97,7 @@ export default function AboutMe(props) {
           </p>
         </motion.div>
       </TextContainer>
-      <EmailButton custom={4}>Shoot me an email!</EmailButton>
+      <EmailButton custom={1} variants={animVariants}>Shoot me an email!</EmailButton>
     </Layout>
   )
 }

@@ -39,9 +39,6 @@ export default function BlogTile({ date, title, desc, tags, onClick, orderID, va
     <TileContainer
       onClick={onClick}
       custom={orderID}
-      initial="initial"
-      animate="in"
-      exit="out"
       variants={variants}
     >
       <TileHeader>

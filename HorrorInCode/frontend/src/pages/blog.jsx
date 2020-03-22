@@ -46,7 +46,7 @@ export default function Blog(props) {
         />
 
         <BlogTile
-          orderID={0}
+          orderID={1}
           variants={animVariants}
           date="21-03-1997"
           title="test"
@@ -57,7 +57,7 @@ export default function Blog(props) {
         />
 
         <BlogTile
-          orderID={0}
+          orderID={2}
           variants={animVariants}
           date="21-03-1997"
           title="test"
