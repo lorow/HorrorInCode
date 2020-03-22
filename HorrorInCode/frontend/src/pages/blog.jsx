@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import BlogTile from '../components/BlogTile';
-import { setBackgroundText, setVisualPageIndex, completePageTransition } from '../actions/pageActions'
-import { useSelector, useDispatch } from 'react-redux';
+import { setBackgroundText, setVisualPageIndex } from '../actions/pageActions'
+import { useDispatch } from 'react-redux';
 
 const BlogContainer = styled.main`
   width: 100vw;
@@ -23,22 +23,11 @@ const BlogTilesList = styled.div`
 
 export default function Blog(props) {
   const dispatch = useDispatch();
-  const pageInfo = useSelector(state => state.pageInfo);
 
   useEffect(() => {
     dispatch(setBackgroundText("BLOG"));
     dispatch(setVisualPageIndex("03"));
   }, [dispatch])
-
-  useEffect(() => {
-    if (pageInfo.isTransitioning) {
-      // animate it
-      dispatch(completePageTransition());
-    }
-    else {
-      // animate enter
-    }
-  }, [pageInfo])
 
   return (
     <BlogContainer>

@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useAnimation } from 'framer-motion';
 import styled from 'styled-components';
 import Greeter from '../components/greeter';
 import Pagination from '../components/pagination';
 import ProjectSelect from '../components/projectSelect';
 import WorkDetail from '../components/workDetail';
-import { setBackgroundText, setVisualPageIndex, completePageTransition } from '../actions/pageActions';
+import { rootTransition } from '../transitions';
+import { setBackgroundText, setVisualPageIndex } from '../actions/pageActions';
 
 const Main = styled.main`
   height: 100vh;
@@ -30,7 +32,8 @@ const Main = styled.main`
 
 export default function LandingPage(props) {
   const dispatch = useDispatch();
-  const pageInfo = useSelector(state => state.pageInfo);
+  const animVariants = rootTransition['landing'];
+  const ladningAnim = useAnimation();
 
   const [slideId, setSlideId] = useState(0);
   const [projectVisible, setProjectVisible] = useState({ state: false, projectId: -1 });
@@ -57,19 +60,6 @@ export default function LandingPage(props) {
   }, [dispatch]);
 
   useEffect(() => {
-
-    if (pageInfo.isTransitioning) {
-      // launch an async exiting animation, and then, in promise call dispatch
-      // with complete_page_transition
-      dispatch(completePageTransition());
-    }
-    else {
-      // do the entering animation
-    }
-
-  }, [pageInfo])
-
-  useEffect(() => {
     // triggers only if the project updates
     if (!projectVisible.state && projectVisible.projectId !== -1) {
       //  we only do stuff if both: the id is not negative and we haven't animated anything yet
@@ -83,7 +73,7 @@ export default function LandingPage(props) {
 
   return (
     <Main>
-      <Greeter />
+      <Greeter orderID={0} animate={ladningAnim} variants={animVariants} />
       <ProjectSelect onClick={onProjectClick} slideId={slideId} setSlideId={setSlideId} />
       <Pagination onClickPrev={onClickPrev} onClickNext={onClickNext} />
       {

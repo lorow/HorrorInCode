@@ -1,8 +1,6 @@
 import React, { useState, useCallback } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import styled, { css } from 'styled-components';
-import { initPageTransition } from '../actions/pageActions';
-import { useDispatch } from 'react-redux';
 import { routes } from '../routes';
 
 
@@ -92,6 +90,9 @@ const Navlink = styled.a`
   ${commonLinkStyle}
 `;
 
+const RouterNavLink = styled(Link)`
+  ${commonLinkStyle}
+`;
 
 function Navbar(props) {
   const [shouldMenuOpen, setShouldMenuOpen] = useState(false);
@@ -100,7 +101,6 @@ function Navbar(props) {
     setShouldMenuOpen(prev => !prev);
   }, [])
 
-  const dispatch = useDispatch();
 
   return (
     <>
@@ -109,14 +109,13 @@ function Navbar(props) {
         <CloseHamburgerMenu onClick={toggleMenu}>X</CloseHamburgerMenu>
         {
           routes.map(({ path, name }) => (
-            <Navlink
-              onClick={() => { dispatch(initPageTransition(path)) }}
+            <RouterNavLink
+              exac path={path}
               key={path + name}
-
               isActive={props.location.pathname === path}
             >
               {name}
-            </Navlink>
+            </RouterNavLink>
           ))
         }
         <Navlink href="/Zdzislaw_Goik_CV.pdf" download="zdzislaw_goik_cv" >Resume</Navlink>

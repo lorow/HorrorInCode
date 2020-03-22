@@ -9,13 +9,21 @@ export const setVisualPageIndex = (index) => ({
 })
 
 
-// dispatched when a nav button is pressed
-export const initPageTransition = (route) => ({
-  type: "INIT_PAGE_TRANSITION",
-  payload: route
-})
+// // dispatched when a nav button is pressed
+// export const initPageTransition = (route) => ({
+//   type: "INIT_PAGE_TRANSITION",
+//   payload: route
+// })
 
-// dispatched only after the exiting animation has finished
-export const completePageTransition = () => ({
-  type: "COMPLETE_PAGE_TRANSITION"
-})
+// // this will be catched by sagas
+// export const animateTransition = ({ page, state, animator }) => ({
+//   type: "ANIMATE_PAGE_TRANSITION",
+//   payload: {
+//     page, state, animator
+//   }
+// })
+
+// // dispatched only after the exiting animation has finished
+// export const completePageTransition = () => ({
+//   type: "COMPLETE_PAGE_TRANSITION"
+// })

@@ -1,7 +1,8 @@
 import React from 'react';
+import { motion } from 'framer-motion'
 import styled from 'styled-components';
 
-const GreeterContainer = styled.div`
+const GreeterContainer = styled(motion.div)`
   margin-top: 10px;
   grid-area: navigation;
   color: white;
@@ -30,9 +31,9 @@ const GreeterText = styled.p`
   opacity:  0.7;
 `;
 
-export default function Greeter(props) {
+export default function Greeter({ animate, orderID, variants }) {
   return (
-    <GreeterContainer>
+    <GreeterContainer orderID={orderID} animate={animate}>
       <InlineText>
         <HiMark>Hello there!</HiMark>
         <HiMark hidden>General kenobi</HiMark>

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { setBackgroundText, setVisualPageIndex, completePageTransition } from '../actions/pageActions';
+import { useDispatch } from 'react-redux';
+import { setBackgroundText, setVisualPageIndex } from '../actions/pageActions';
 import { PrimaryButton } from '../components/button';
 import styled from 'styled-components';
 
@@ -68,25 +68,11 @@ const EmailButton = styled(PrimaryButton)`
 export default function AboutMe(props) {
 
   const dispatch = useDispatch();
-  const pageInfo = useSelector(state => state.pageInfo);
 
   useEffect(() => {
     dispatch(setBackgroundText("ABOUT ME"));
     dispatch(setVisualPageIndex("02"));
   }, [dispatch])
-
-  useEffect(() => {
-    if (pageInfo.isTransitioning) {
-      // launch an async exiting animation, and then, in promise call dispatch
-      // with complete_page_transition
-
-      dispatch(completePageTransition());
-    }
-    else {
-      // do the entry animation
-    }
-  }, [pageInfo])
-
 
   return (
     <Layout>

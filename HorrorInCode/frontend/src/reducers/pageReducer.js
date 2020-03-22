@@ -1,7 +1,5 @@
-import { history } from '../history';
-
 export const PageReducer = (
-  state = { isTransitioning: false, backgroundText: "", visualPageIndex: "01", route: "" },
+  state = { backgroundText: "", visualPageIndex: "01" },
   action
 ) => {
   switch (action.type) {
@@ -15,21 +13,6 @@ export const PageReducer = (
       return {
         ...state,
         visualPageIndex: action.payload
-      }
-
-    case "INIT_PAGE_TRANSITION":
-      return {
-        ...state,
-        isTransitioning: true,
-        route: action.payload
-      }
-
-    case "COMPLETE_PAGE_TRANSITION":
-      history.push(state.route);
-      return {
-        ...state,
-        isTransitioning: false,
-        route: ""
       }
 
     default: return state
