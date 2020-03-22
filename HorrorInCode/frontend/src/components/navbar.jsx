@@ -110,7 +110,7 @@ function Navbar(props) {
         {
           routes.map(({ path, name }) => (
             <RouterNavLink
-              exac path={path}
+              to={path}
               key={path + name}
               isActive={props.location.pathname === path}
             >

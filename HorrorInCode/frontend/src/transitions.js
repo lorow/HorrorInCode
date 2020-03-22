@@ -1,4 +1,7 @@
 const landingPage = {
+  initial: {
+    opacity: 0,
+  },
   in: i => ({
     opacity: [0, 1],
     transition: {

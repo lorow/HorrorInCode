@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Carousel from '@brainhubeu/react-carousel';
+import { motion } from 'framer-motion'
 import '@brainhubeu/react-carousel/lib/style.css';
 import styled from 'styled-components';
 
-const ProjectSelectContainer = styled.article`
+const ProjectSelectContainer = styled(motion.article)`
   grid-area: main;
   grid-column: 2 /4;
 
@@ -57,7 +58,13 @@ export default function ProjectSelect(props) {
   }, []);
 
   return (
-    <ProjectSelectContainer>
+    <ProjectSelectContainer
+      orderID={props.orderID}
+      initial="initial"
+      animate="in"
+      exit="out"
+      variants={props.variants}
+    >
       <ProjectSlider>
         <Carousel
           slidesPerPage={windowWidth <= "800" ? 1 : 2}

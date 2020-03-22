@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useAnimation } from 'framer-motion';
 import styled from 'styled-components';
 import Greeter from '../components/greeter';
 import Pagination from '../components/pagination';
@@ -33,7 +32,6 @@ const Main = styled.main`
 export default function LandingPage(props) {
   const dispatch = useDispatch();
   const animVariants = rootTransition['landing'];
-  const ladningAnim = useAnimation();
 
   const [slideId, setSlideId] = useState(0);
   const [projectVisible, setProjectVisible] = useState({ state: false, projectId: -1 });
@@ -73,9 +71,9 @@ export default function LandingPage(props) {
 
   return (
     <Main>
-      <Greeter orderID={0} animate={ladningAnim} variants={animVariants} />
-      <ProjectSelect onClick={onProjectClick} slideId={slideId} setSlideId={setSlideId} />
-      <Pagination onClickPrev={onClickPrev} onClickNext={onClickNext} />
+      <Greeter orderID={0} variants={animVariants} />
+      <ProjectSelect orderID={1} variants={animVariants} onClick={onProjectClick} slideId={slideId} setSlideId={setSlideId} />
+      <Pagination orderID={2} variants={animVariants} onClickPrev={onClickPrev} onClickNext={onClickNext} />
       {
         projectVisible.state &&
         <WorkDetail projectID={projectVisible.projectId} />

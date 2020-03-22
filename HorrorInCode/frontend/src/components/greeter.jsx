@@ -31,9 +31,15 @@ const GreeterText = styled.p`
   opacity:  0.7;
 `;
 
-export default function Greeter({ animate, orderID, variants }) {
+export default function Greeter({ orderID, variants }) {
   return (
-    <GreeterContainer orderID={orderID} animate={animate}>
+    <GreeterContainer
+      orderID={orderID}
+      initial="initial"
+      animate="in"
+      exit="out"
+      variants={variants}
+    >
       <InlineText>
         <HiMark>Hello there!</HiMark>
         <HiMark hidden>General kenobi</HiMark>

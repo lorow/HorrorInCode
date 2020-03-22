@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux'
-import { Router, Switch, Route } from 'react-router-dom';
+import { Switch, Route, useLocation } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
 import Navbar from './components/navbar';
 import MiddleBilboardText from './components/middleBilboardText';
 import Counter from './components/counter';
-import { history } from './history';
 import { routes } from './routes';
 import './App.css';
 
@@ -17,23 +17,21 @@ const Background = styled.div`
 `;
 
 function App() {
-
+  const location = useLocation();
   const PageInfo = useSelector(state => state.pageInfo)
   return (
-    <Router history={history}>
-      <Background>
-        <Navbar />
-        <MiddleBilboardText textToDIsplay={PageInfo.backgroundText} />
-
-        <Switch>
+    <Background>
+      <Navbar />
+      <MiddleBilboardText textToDIsplay={PageInfo.backgroundText} />
+      <AnimatePresence exitBeforeEnter>
+        <Switch location={location} key={location.pathname}>
           {
             routes.map(({ path, Component }) => <Route key={path} exact path={path} component={Component} />)
           }
         </Switch>
-
-        <Counter pageNumber={PageInfo.visualPageIndex} />
-      </Background>
-    </Router>
+      </AnimatePresence>
+      <Counter pageNumber={PageInfo.visualPageIndex} />
+    </Background>
   )
 }
 
