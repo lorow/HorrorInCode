@@ -59,7 +59,7 @@ export default function ProjectSelect(props) {
 
   return (
     <ProjectSelectContainer
-      orderID={props.orderID}
+      custom={props.orderID}
       initial="initial"
       animate="in"
       exit="out"

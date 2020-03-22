@@ -1,8 +1,9 @@
 import React from 'react';
 import { Tag } from './tag';
+import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
-const TileContainer = styled.article`
+const TileContainer = styled(motion.article)`
   color: white;
   margin-bottom: 5vh;
   z-index: 1;
@@ -33,9 +34,16 @@ const TileDesc = styled.p`
   text-overflow: ellipsis;
 `;
 
-export default function BlogTile({ date, title, desc, tags, onClick }) {
+export default function BlogTile({ date, title, desc, tags, onClick, orderID, variants }) {
   return (
-    <TileContainer onClick={onClick}>
+    <TileContainer
+      onClick={onClick}
+      custom={orderID}
+      initial="initial"
+      animate="in"
+      exit="out"
+      variants={variants}
+    >
       <TileHeader>
         <DateTile>{date}</DateTile>
         {

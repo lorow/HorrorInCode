@@ -2,9 +2,11 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { setBackgroundText, setVisualPageIndex } from '../actions/pageActions';
 import { PrimaryButton } from '../components/button';
+import { rootTransition } from '../transitions';
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
-const Layout = styled.main`
+const Layout = styled(motion.main)`
   height: 100vh;
   width: 100vw;
   position: relative;
@@ -68,6 +70,7 @@ const EmailButton = styled(PrimaryButton)`
 export default function AboutMe(props) {
 
   const dispatch = useDispatch();
+  const animVariants = rootTransition['about'];
 
   useEffect(() => {
     dispatch(setBackgroundText("ABOUT ME"));
@@ -75,24 +78,26 @@ export default function AboutMe(props) {
   }, [dispatch])
 
   return (
-    <Layout>
-      <DimmedImage src="http://placekitten.com/200/300" />
+    <Layout variants={animVariants} initial="initial" animate="in" exit="out">
+      <DimmedImage custom={1} src="http://placekitten.com/200/300" />
       <TextContainer>
-        <SectionTitle>About me</SectionTitle>
-        <p>
-          {"Like I said at the beginning, I’m Zdzisław Goik. I’m a passionate developer born in Poland."}
-        </p>
-        <p>
-          {"I’m a freelance developer working with django and react on daily basis"}
-        </p>
-        <p>
-          {`Driven by my passion, I try to learn and discover new things every day. I constantly seek to better myself in what I do, be it code, design or anything else. `}
-        </p>
-        <p>
-          {`But work isn't the only thing that makes life worth living, I love to 3D print all the things, and shred snow my board in the season.`}
-        </p>
-      </TextContainer >
-      <EmailButton >Shoot me an email!</EmailButton>
+        <SectionTitle custom={0}>About me</SectionTitle>
+        <motion.div custom={3}>
+          <p>
+            {"Like I said at the beginning, I’m Zdzisław Goik. I’m a passionate developer born in Poland."}
+          </p>
+          <p>
+            {"I’m a freelance developer working with django and react on daily basis"}
+          </p>
+          <p>
+            {`Driven by my passion, I try to learn and discover new things every day. I constantly seek to better myself in what I do, be it code, design or anything else. `}
+          </p>
+          <p>
+            {`But work isn't the only thing that makes life worth living, I love to 3D print all the things, and shred snow my board in the season.`}
+          </p>
+        </motion.div>
+      </TextContainer>
+      <EmailButton custom={4}>Shoot me an email!</EmailButton>
     </Layout>
   )
 }

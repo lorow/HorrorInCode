@@ -34,7 +34,7 @@ const GreeterText = styled.p`
 export default function Greeter({ orderID, variants }) {
   return (
     <GreeterContainer
-      orderID={orderID}
+      custom={orderID}
       initial="initial"
       animate="in"
       exit="out"

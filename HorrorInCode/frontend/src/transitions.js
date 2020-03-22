@@ -5,7 +5,30 @@ const landingPage = {
   in: i => ({
     opacity: [0, 1],
     transition: {
+      delay: i * .8
+    }
+  }),
+
+  out: i => ({
+    opacity: [1, 0],
+    transition: {
       delay: i * 0.3
+    }
+  }),
+
+  projectShowUp: {
+
+  }
+}
+
+const blogPage = {
+  initial: {
+    opacity: 0,
+  },
+  in: i => ({
+    opacity: [0, 1],
+    transition: {
+      delay: i * .8
     }
   }),
 
@@ -17,12 +40,23 @@ const landingPage = {
   }),
 }
 
-const blogPage = {
-
-}
-
 const aboutPage = {
+  initial: {
+    opacity: 0,
+  },
+  in: i => ({
+    opacity: [0, 1],
+    transition: {
+      delay: i * .8
+    }
+  }),
 
+  out: i => ({
+    opacity: [1, 0],
+    transition: {
+      delay: i * 0.3
+    }
+  }),
 }
 
 export const rootTransition = {

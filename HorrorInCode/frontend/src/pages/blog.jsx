@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
+import { rootTransition } from '../transitions';
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 import BlogTile from '../components/BlogTile';
 import { setBackgroundText, setVisualPageIndex } from '../actions/pageActions'
 import { useDispatch } from 'react-redux';
@@ -15,7 +17,7 @@ const BlogContainer = styled.main`
   grid-template-areas: "top top" "sidebard content" "footer footer";
 `;
 
-const BlogTilesList = styled.div`
+const BlogTilesList = styled(motion.div)`
   display: flex;
   flex-direction: column;
   grid-area: content;
@@ -23,6 +25,7 @@ const BlogTilesList = styled.div`
 
 export default function Blog(props) {
   const dispatch = useDispatch();
+  const animVariants = rootTransition['blog'];
 
   useEffect(() => {
     dispatch(setBackgroundText("BLOG"));
@@ -31,8 +34,10 @@ export default function Blog(props) {
 
   return (
     <BlogContainer>
-      <BlogTilesList>
+      <BlogTilesList variants={animVariants} initial="initial" animate="in" exit="out">
         <BlogTile
+          orderID={0}
+          variants={animVariants}
           date="21-03-1997"
           title="test"
           tags={["awawdawdawdd", "React"]}
@@ -41,6 +46,8 @@ export default function Blog(props) {
         />
 
         <BlogTile
+          orderID={0}
+          variants={animVariants}
           date="21-03-1997"
           title="test"
 
@@ -50,6 +57,8 @@ export default function Blog(props) {
         />
 
         <BlogTile
+          orderID={0}
+          variants={animVariants}
           date="21-03-1997"
           title="test"
           tags={[]}
