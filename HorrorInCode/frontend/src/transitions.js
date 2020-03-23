@@ -6,7 +6,7 @@ const landingPage = {
     opacity: [0, 1],
     transition: {
       delay: i * .5,
-      duration: .6,
+      duration: .4,
     },
 
   }),

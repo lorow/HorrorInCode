@@ -1,5 +1,6 @@
 from graphene_django import DjangoObjectType
 from API.models import Project, Tag, Article
+from graphene import relay
 import graphene
 
 
@@ -36,12 +37,18 @@ class TagType(DjangoObjectType):
 class ArticleType(DjangoObjectType):
     class Meta:
         model = Article
+        interfaces = (relay.Node, )
 
 
-class ArticleQuery(object):
+class ArticleConnection(relay.Connection):
+    class Meta:
+        node = ArticleType
+
+
+class ArticleQuery:
 
     tags = graphene.List(TagType)
-    articles = graphene.List(ArticleType)
+    articles = graphene.relay.ConnectionField(ArticleConnection)
     article = graphene.Field(
         ArticleType,
         id=graphene.Int(),
