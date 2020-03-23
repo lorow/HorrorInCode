@@ -8,22 +8,21 @@ export const setVisualPageIndex = (index) => ({
   payload: index
 })
 
+export const fetchBlogPosts = (pageCursor) => ({
+  type: "FETCH_BLOG_POSTS",
+  payload: pageCursor
+})
 
-// // dispatched when a nav button is pressed
-// export const initPageTransition = (route) => ({
-//   type: "INIT_PAGE_TRANSITION",
-//   payload: route
-// })
+export const fetchCompleteBlogPost = (postID) => ({
+  type: "FETCH_COMPLETE_POST",
+  paylaod: postID
+})
 
-// // this will be catched by sagas
-// export const animateTransition = ({ page, state, animator }) => ({
-//   type: "ANIMATE_PAGE_TRANSITION",
-//   payload: {
-//     page, state, animator
-//   }
-// })
+export const fetchProjects = (pageCursor) => ({
 
-// // dispatched only after the exiting animation has finished
-// export const completePageTransition = () => ({
-//   type: "COMPLETE_PAGE_TRANSITION"
-// })
+})
+
+export const fetchCompleteProject = (projectID) => ({
+  type: "FETCH_PROJECT",
+  payload: projectID
+})
