@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import Greeter from '../components/greeter';
 import Pagination from '../components/pagination';
@@ -7,6 +7,7 @@ import ProjectSelect from '../components/projectSelect';
 import WorkDetail from '../components/workDetail';
 import { rootTransition } from '../transitions';
 import { setBackgroundText, setVisualPageIndex } from '../actions/pageActions';
+import { fetchProjects } from '../actions/projectActions';
 
 const Main = styled.main`
   height: 100vh;
@@ -32,7 +33,7 @@ const Main = styled.main`
 export default function LandingPage(props) {
   const dispatch = useDispatch();
   const animVariants = rootTransition['landing'];
-
+  const projects = useSelector(state => state.projects);
   const [slideId, setSlideId] = useState(0);
   const [projectVisible, setProjectVisible] = useState({ state: false, projectId: -1 });
 
@@ -55,6 +56,7 @@ export default function LandingPage(props) {
   useEffect(() => {
     dispatch(setBackgroundText("MY WORKS"));
     dispatch(setVisualPageIndex("01"));
+    dispatch(fetchProjects());
   }, [dispatch]);
 
   useEffect(() => {
@@ -68,6 +70,10 @@ export default function LandingPage(props) {
       setProjectVisible({ ...projectVisible, state: true })
     }
   }, [projectVisible])
+
+  useEffect(() => {
+    console.log(projects)
+  }, [projects])
 
   return (
     <Main>

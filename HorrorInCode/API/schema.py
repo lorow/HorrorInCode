@@ -34,10 +34,25 @@ class TagType(DjangoObjectType):
         model = Tag
 
 
+class ArticleNode(relay.Node):
+    class Meta:
+        name = "Node"
+
+    @staticmethod
+    def to_global_id(type, id):
+        return id
+    
+    @staticmethod
+    def get_node_from_global_id(info, global_id, only_type=None):
+        model = getattr(ArticleQuery.info.field_name).field_type._meta.model
+        return model.objects.get(id=global_id) 
+
+
 class ArticleType(DjangoObjectType):
+
     class Meta:
         model = Article
-        interfaces = (relay.Node, )
+        interfaces = (ArticleNode, )
 
 
 class ArticleConnection(relay.Connection):

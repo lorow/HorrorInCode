@@ -3,8 +3,9 @@ import { rootTransition } from '../transitions';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import BlogTile from '../components/BlogTile';
-import { setBackgroundText, setVisualPageIndex } from '../actions/pageActions'
-import { useDispatch } from 'react-redux';
+import { setBackgroundText, setVisualPageIndex } from '../actions/pageActions';
+import { fetchBlogPosts } from '../actions/blogActions';
+import { useDispatch, useSelector } from 'react-redux';
 
 const BlogContainer = styled.main`
   width: 100vw;
@@ -26,11 +27,19 @@ const BlogTilesList = styled(motion.div)`
 export default function Blog(props) {
   const dispatch = useDispatch();
   const animVariants = rootTransition['blog'];
+  const blogData = useSelector(state => state.blog);
 
   useEffect(() => {
     dispatch(setBackgroundText("BLOG"));
     dispatch(setVisualPageIndex("03"));
+
+    // and now download the newest posts
+    dispatch(fetchBlogPosts(""))
   }, [dispatch])
+
+  useEffect(() => {
+    console.log(blogData)
+  }, [blogData])
 
   return (
     <BlogContainer>
