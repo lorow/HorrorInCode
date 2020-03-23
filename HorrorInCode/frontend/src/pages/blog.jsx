@@ -32,8 +32,6 @@ export default function Blog(props) {
   useEffect(() => {
     dispatch(setBackgroundText("BLOG"));
     dispatch(setVisualPageIndex("03"));
-
-    // and now download the newest posts
     dispatch(fetchBlogPosts(""))
   }, [dispatch])
 
@@ -44,36 +42,21 @@ export default function Blog(props) {
   return (
     <BlogContainer>
       <BlogTilesList variants={animVariants} initial="initial" animate="in" exit="out">
-        <BlogTile
-          orderID={0}
-          variants={animVariants}
-          date="21-03-1997"
-          title="test"
-          tags={["awawdawdawdd", "React"]}
-          desc='awdawdawd'
-          onClick={() => { console.log("AWD") }}
-        />
-
-        <BlogTile
-          orderID={1}
-          variants={animVariants}
-          date="21-03-1997"
-          title="test"
-
-          tags={[]}
-          desc='awdawdawd'
-          onClick={() => { console.log("AWD") }}
-        />
-
-        <BlogTile
-          orderID={2}
-          variants={animVariants}
-          date="21-03-1997"
-          title="test"
-          tags={[]}
-          desc='awdawdawd'
-          onClick={() => { console.log("AWD") }}
-        />
+        {
+          blogData.data.map(
+            blogPost => (
+              <BlogTile
+                key={blogPost.cursor}
+                orderID={blogPost.node.id}
+                date={blogPost.node.publishedDate}
+                title={blogPost.node.title}
+                desc={blogPost.node.description}
+                tags={blogPost.node.tags}
+                onClick={() => console.log(blogPost.node.id)}
+              />
+            )
+          )
+        }
       </BlogTilesList>
     </BlogContainer>
   )

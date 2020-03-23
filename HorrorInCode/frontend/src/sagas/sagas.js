@@ -12,7 +12,7 @@ function* fetchFeaturedProjects(action) {
 }
 
 function* fetchBlogPosts(action) {
-  const query = `query{ articles(first: 3, after:""){ pageInfo{ hasNextPage, hasPreviousPage, endCursor, }, edges{ node{ id, title, tags { id, name}},cursor}},}`
+  const query = `query{ articles(first: 3, after:""){ pageInfo{ hasNextPage, hasPreviousPage, endCursor, }, edges{ node{ publishedDate,id, title, description, tags { id, name}},cursor}},}`
   const response = yield call(fetch, '/graph/?query=' + query)
 
   if (response.ok) {

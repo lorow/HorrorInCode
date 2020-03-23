@@ -44,7 +44,7 @@ export default function BlogTile({ date, title, desc, tags, onClick, orderID, va
       <TileHeader>
         <DateTile>{date}</DateTile>
         {
-          tags.map(tag => <Tag>{tag}</Tag>)
+          tags.map(tag => <Tag key={tag.id}>{tag.name}</Tag>)
         }
       </TileHeader>
       <TileTitle>
