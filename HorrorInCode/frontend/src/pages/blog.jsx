@@ -6,6 +6,7 @@ import BlogTile from '../components/BlogTile';
 import { setBackgroundText, setVisualPageIndex } from '../actions/pageActions';
 import { fetchBlogPosts } from '../actions/blogActions';
 import { useDispatch, useSelector } from 'react-redux';
+import { history } from '../history';
 
 const BlogContainer = styled.main`
   width: 100vw;
@@ -41,7 +42,7 @@ export default function Blog(props) {
 
   return (
     <BlogContainer>
-      <BlogTilesList variants={animVariants} initial="initial" animate="in" exit="out">
+      <BlogTilesList variants={animVariants} animate="in" initial="initial" exit="out">
         {
           blogData.data.map(
             blogPost => (
@@ -52,12 +53,13 @@ export default function Blog(props) {
                 title={blogPost.node.title}
                 desc={blogPost.node.description}
                 tags={blogPost.node.tags}
-                onClick={() => console.log(blogPost.node.id)}
+                onClick={() => history.push(`/blog/${blogPost.node.id}`)}
               />
             )
           )
         }
       </BlogTilesList>
+
     </BlogContainer>
   )
 }

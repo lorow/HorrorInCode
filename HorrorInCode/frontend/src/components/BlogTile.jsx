@@ -5,6 +5,7 @@ import styled from 'styled-components';
 
 const TileContainer = styled(motion.article)`
   color: white;
+  /* max-width: 40%; */
   margin-bottom: 5vh;
   z-index: 1;
   &:hover{
@@ -24,13 +25,13 @@ const DateTile = styled.p`
 `;
 
 const TileTitle = styled.h2`
-  font-size: calc(1.5rem + 2vw);
+  font-size: calc(1rem + 2vw);
 `;
 
 const TileDesc = styled.p`
-  max-width: 40%;
-  max-height: 8vh;
+  max-height: 5vh;
   overflow: hidden;
+  max-width: 40vw;
   text-overflow: ellipsis;
 `;
 

@@ -22,7 +22,7 @@ function* fetchFeaturedProjects(action) {
 function* fetchBlogPosts(action) {
   const query = `query
   {
-    articles( first: 3, after:${action.payload} ){ 
+    articles( first: 3, after:${action.payload ? action.payload : '""'} ){ 
       pageInfo{ 
         hasNextPage,
         hasPreviousPage,

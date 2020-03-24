@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import Greeter from '../components/greeter';
 import Pagination from '../components/pagination';
 import ProjectSelect from '../components/projectSelect';
-import WorkDetail from '../components/workDetail';
 import { rootTransition } from '../transitions';
 import { setBackgroundText, setVisualPageIndex } from '../actions/pageActions';
 import { fetchProjects } from '../actions/projectActions';
@@ -35,7 +34,6 @@ export default function LandingPage(props) {
   const animVariants = rootTransition['landing'];
   const projects = useSelector(state => state.projects);
   const [slideId, setSlideId] = useState(0);
-  const [projectVisible, setProjectVisible] = useState({ state: false, projectId: -1 });
 
   const onClickNext = () => {
     setSlideId(slideId + 1);
@@ -46,11 +44,8 @@ export default function LandingPage(props) {
   }
 
   const onProjectClick = (projectID) => {
-    // the user decided that they want to see that project, fair enough,
-    // set the id first, so that the useEffect can trigger and handle 
-    // animating everything out
-    if (!projectVisible.state)
-      setProjectVisible({ ...projectVisible, projectId: projectID })
+    // push the history to /projects/:id
+    // AnimatePresence will take care of it
   }
 
   useEffect(() => {
@@ -59,17 +54,6 @@ export default function LandingPage(props) {
     dispatch(fetchProjects());
   }, [dispatch]);
 
-  useEffect(() => {
-    // triggers only if the project updates
-    if (!projectVisible.state && projectVisible.projectId !== -1) {
-      //  we only do stuff if both: the id is not negative and we haven't animated anything yet
-      // second rule indicated by the state field
-
-      // if so, animate everything out and let the project panel show itself
-      // animateProjectEntry();
-      setProjectVisible({ ...projectVisible, state: true })
-    }
-  }, [projectVisible])
 
   useEffect(() => {
     console.log(projects)
@@ -80,10 +64,6 @@ export default function LandingPage(props) {
       <Greeter orderID={0} variants={animVariants} />
       <ProjectSelect orderID={1} variants={animVariants} onClick={onProjectClick} slideId={slideId} setSlideId={setSlideId} />
       <Pagination orderID={2} variants={animVariants} onClickPrev={onClickPrev} onClickNext={onClickNext} />
-      {
-        projectVisible.state &&
-        <WorkDetail projectID={projectVisible.projectId} />
-      }
     </Main>
   );
 }
