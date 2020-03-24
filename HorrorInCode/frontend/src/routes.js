@@ -8,7 +8,7 @@ export const routes = [
   { path: '/', Component: LandingPage, name: "Works", visibleInNav: true },
   { path: '/about', Component: AboutMe, name: "About", visibleInNav: true },
   { path: '/blog', Component: Blog, name: "Blog", visibleInNav: true },
-  { path: '/blog/:articleId/', Component: blogPost, name: "post", visibleInNav: true },
-  { path: '/project/:projectId/', Component: WorkDetail, name: "project", visibleInNav: true },
+  { path: '/blog/:articleId/', Component: blogPost, name: "post", visibleInNav: false },
+  { path: '/project/:projectId/', Component: WorkDetail, name: "project", visibleInNav: false },
 
 ]

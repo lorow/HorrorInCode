@@ -108,7 +108,9 @@ function Navbar(props) {
       <NavbarContainer shouldMenuDisplay={shouldMenuOpen}>
         <CloseHamburgerMenu onClick={toggleMenu}>X</CloseHamburgerMenu>
         {
-          routes.map(({ path, name }) => (
+          routes.filter(
+            route => route.visibleInNav
+          ).map(({ path, name }) => (
             <RouterNavLink
               to={path}
               key={path + name}
