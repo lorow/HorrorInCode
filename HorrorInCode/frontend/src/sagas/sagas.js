@@ -3,7 +3,15 @@ import { setBlogPosts } from '../actions/blogActions';
 import { setAllProjects } from '../actions/projectActions';
 
 function* fetchFeaturedProjects(action) {
-  const query = `query{projects{id, name, cover,}}`;
+  const query = `query
+  {
+    projects{ 
+      id,
+      name,
+      cover,
+    }
+  }`;
+
   const response = yield call(fetch, '/graph/?query=' + query)
   if (response.ok) {
     const json = yield call([response, 'json'])
@@ -12,7 +20,30 @@ function* fetchFeaturedProjects(action) {
 }
 
 function* fetchBlogPosts(action) {
-  const query = `query{ articles(first: 3, after:""){ pageInfo{ hasNextPage, hasPreviousPage, endCursor, }, edges{ node{ publishedDate,id, title, description, tags { id, name}},cursor}},}`
+  const query = `query
+  {
+    articles( first: 3, after:${action.payload} ){ 
+      pageInfo{ 
+        hasNextPage,
+        hasPreviousPage,
+        endCursor,
+      }, 
+      edges{ 
+        node{ 
+          publishedDate,
+          id,
+          title,
+          description,
+          tags { 
+            id,
+            name
+          }
+        },
+        cursor
+      }
+    },
+  }`
+
   const response = yield call(fetch, '/graph/?query=' + query)
 
   if (response.ok) {
