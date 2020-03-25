@@ -43,7 +43,7 @@ export default function Blog(props) {
   return (
     <BlogContainer>
       <BlogTilesList variants={animVariants} animate="in" initial="initial" exit="out">
-        {
+        {!blogData.isSingle &&
           blogData.data.map(
             blogPost => (
               <BlogTile

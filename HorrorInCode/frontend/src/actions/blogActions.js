@@ -5,7 +5,7 @@ export const fetchBlogPosts = (pageCursor) => ({
 
 export const fetchCompleteBlogPost = (postID) => ({
   type: "FETCH_COMPLETE_POST",
-  paylaod: postID
+  payload: postID
 })
 
 export const setBlogPosts = ({ data, pageInfo }) => ({

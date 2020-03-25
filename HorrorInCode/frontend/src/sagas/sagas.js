@@ -1,6 +1,6 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
-import { setBlogPosts } from '../actions/blogActions';
-import { setAllProjects } from '../actions/projectActions';
+import { setBlogPosts, setSingleBlogPost } from '../actions/blogActions';
+import { setAllProjects, setSingleProject } from '../actions/projectActions';
 
 function* fetchFeaturedProjects(action) {
   const query = `query
@@ -52,8 +52,39 @@ function* fetchBlogPosts(action) {
   }
 }
 
+function* fetchSingleBlogPost(action) {
+
+  const query = `query{
+    article(id:${action.payload}){
+      title,
+      description,
+      publishedDate,
+      tags {
+        id,
+        name
+      },
+      id
+    }
+  }
+  `;
+
+  const response = yield call(fetch, '/graph/?query=' + query);
+  if (response.ok) {
+    const json = yield call([response, "json"]);
+    yield put(setSingleBlogPost({ data: json.data.article }))
+  }
+
+}
+
+function* fetchSingleProject(action) {
+  console.log(action);
+  yield put(setSingleProject({}))
+}
 
 export default function* rootSaga() {
   yield takeEvery("FETCH_BLOG_POSTS", fetchBlogPosts);
   yield takeEvery("FETCH_PROJECTS", fetchFeaturedProjects);
+
+  yield takeEvery("FETCH_COMPLETE_POST", fetchSingleBlogPost);
+  yield takeEvery("FETCH_PROJECT", fetchSingleProject);
 }
