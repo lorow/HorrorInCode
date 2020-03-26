@@ -65,6 +65,12 @@ const EmailButton = styled(PrimaryButton)`
   margin-left: auto;
   margin-right: auto;
   }
+
+  a{
+    color: white;
+    text-decoration: none;
+    font-weight: 100;
+  }
 `;
 
 export default function AboutMe(props) {
@@ -97,7 +103,7 @@ export default function AboutMe(props) {
           </p>
         </motion.div>
       </TextContainer>
-      <EmailButton custom={1} variants={animVariants}>Shoot me an email!</EmailButton>
+      <EmailButton custom={1} variants={animVariants}><a href="mailto: goik.zdzislaw@gmail.com">Shoot me an email!</a></EmailButton>
     </Layout>
   )
 }
