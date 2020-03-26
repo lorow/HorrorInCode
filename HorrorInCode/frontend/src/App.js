@@ -10,8 +10,14 @@ import { routes } from './routes';
 import './App.css';
 
 
+const Container = styled.div`
+  min-height: 100vh;
+  width: 100vw;
+`;
+
 const Background = styled.div`
   height: 100vh;
+  position: fixed;
   width: 100vw;
   background: linear-gradient(240.48deg, #091430 0.49%, rgba(9, 20, 48, 0.97) 100%);
 `;
@@ -20,7 +26,8 @@ function App() {
   const location = useLocation();
   const PageInfo = useSelector(state => state.pageInfo)
   return (
-    <Background>
+    <Container>
+      <Background />
       <Navbar />
       <MiddleBilboardText textToDIsplay={PageInfo.backgroundText} />
       <AnimatePresence exitBeforeEnter>
@@ -31,7 +38,7 @@ function App() {
         </Switch>
       </AnimatePresence>
       <Counter pageNumber={PageInfo.visualPageIndex} />
-    </Background>
+    </Container>
   )
 }
 

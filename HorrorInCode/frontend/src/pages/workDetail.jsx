@@ -5,6 +5,7 @@ import styled from 'styled-components';
 
 const ProjectDetailContainer = styled(motion.article)`
   /* width: 100vw; */
+  position: relative;
   grid-area: navigation;
 `;
 

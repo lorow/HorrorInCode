@@ -13,7 +13,7 @@ const Main = styled(motion.main)`
   height: auto;
   z-index: 3;
   display: grid;
-
+  position: relative;
   grid-template-columns: .2fr 1fr .18fr;
   grid-template-rows: .1fr auto;
   grid-template-areas: "nav nav nav" "left content right"; 

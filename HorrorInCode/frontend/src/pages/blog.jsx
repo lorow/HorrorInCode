@@ -13,6 +13,7 @@ const BlogContainer = styled.main`
   height: 100vh;
   z-index: 3;
   display: grid;
+  position: relative;
   grid-template-columns: minmax(10px, .13fr) 1fr;
   grid-template-rows: .2fr 1fr .2fr;
 
