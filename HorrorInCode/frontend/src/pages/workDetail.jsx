@@ -9,6 +9,9 @@ const ProjectDetailContainer = styled(motion.article)`
   grid-area: navigation;
 `;
 
+const GoBackButton = styled.button``;
+
+
 export default function WorkDetail(props) {
 
   const { projectId } = useParams();
@@ -17,6 +20,9 @@ export default function WorkDetail(props) {
     <ProjectDetailContainer exit={{}}>
       <h1>
         {projectId}
+        <GoBackButton>
+
+        </GoBackButton>
       </h1>
     </ProjectDetailContainer>
   )

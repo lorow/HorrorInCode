@@ -5,7 +5,6 @@ import styled from 'styled-components';
 
 const TileContainer = styled(motion.article)`
   color: white;
-  /* max-width: 40%; */
   margin-bottom: 5vh;
   z-index: 1;
   &:hover{
@@ -29,7 +28,7 @@ const TileTitle = styled.h2`
 `;
 
 const TileDesc = styled.p`
-  max-height: 5vh;
+  max-height: 7vh;
   overflow: hidden;
   max-width: 40vw;
   text-overflow: ellipsis;
