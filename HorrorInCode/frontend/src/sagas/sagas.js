@@ -82,7 +82,7 @@ function* fetchSingleProject(action) {
       name,
       cover,
       description,
-      tags
+      tech_stack
     }
   }`
 
