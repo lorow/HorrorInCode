@@ -121,7 +121,7 @@ function Navbar(props) {
             </RouterNavLink>
           ))
         }
-        <Navlink href="/Zdzislaw_Goik_CV.pdf" download="zdzislaw_goik_cv" >Resume</Navlink>
+        <Navlink href="/Zdzislaw_Goik_CV.pdf" download="zdzislaw_goik_cv" >Résumé</Navlink>
       </NavbarContainer>
     </>
   )

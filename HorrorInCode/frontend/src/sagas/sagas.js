@@ -12,7 +12,7 @@ function* fetchFeaturedProjects(action) {
     }
   }`;
 
-  const response = yield call(fetch, '/graph/?query=' + query)
+  const response = yield call(fetch, `/graph/?query=${query}`.replace(/\s+/g, ''))
   if (response.ok) {
     const json = yield call([response, 'json'])
     yield put(setAllProjects({ data: json.data.projects }))
@@ -44,7 +44,7 @@ function* fetchBlogPosts(action) {
     },
   }`
 
-  const response = yield call(fetch, '/graph/?query=' + query)
+  const response = yield call(fetch, `/graph/?query=${query}`.replace(/\s+/g, ''))
 
   if (response.ok) {
     const json = yield call([response, "json"])
@@ -68,17 +68,30 @@ function* fetchSingleBlogPost(action) {
   }
   `;
 
-  const response = yield call(fetch, '/graph/?query=' + query);
+  const response = yield call(fetch, `/graph/?query=${query}`.replace(/\s+/g, ''));
   if (response.ok) {
     const json = yield call([response, "json"]);
     yield put(setSingleBlogPost({ data: json.data.article }))
   }
-
 }
 
 function* fetchSingleProject(action) {
-  console.log(action);
-  yield put(setSingleProject({}))
+  const query = `query{
+    project(id:${action.payload}){
+      id,
+      name,
+      cover,
+      description,
+      tags
+    }
+  }`
+
+  const response = yield call(fetch, `/graph/?query=${query}`.replace(/\s+/g, ''))
+  if (response.ok) {
+    const json = yield call([response, "json"])
+    console.log(json)
+    yield put(setSingleProject({}))
+  }
 }
 
 export default function* rootSaga() {
