@@ -20,7 +20,7 @@ const HamburgerButton = styled.button`
   background-size: 100%;
 
   @media (max-width: 768px) {
-    display: block;
+    display: ${props => props.shouldMenuDisplay ? "none" : "block"};
   }
 `;
 
@@ -55,18 +55,19 @@ const NavbarContainer = styled.div`
 
   @media (max-width: 768px) {
     background: linear-gradient(240.48deg, #091430 0.20%, rgba(9, 20, 48, 0.90) 100%);
-    display: ${props => props.shouldMenuDisplay ? "grid" : "none"};
+    display: grid;
     grid-auto-flow: row;
     grid-template-columns: 1fr;
     grid-template-rows: .3fr repeat(4, .3fr) 1fr;
     justify-content: center;
     align-items: center;
-
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-
+    transition: .2s all;
+    z-index: ${props => props.shouldMenuDisplay ? 4 : 0};
+    opacity: ${props => props.shouldMenuDisplay ? 1 : 0}
   }
 `;
 
@@ -101,10 +102,9 @@ function Navbar(props) {
     setShouldMenuOpen(prev => !prev);
   }, [])
 
-
   return (
     <>
-      <HamburgerButton onClick={toggleMenu}></HamburgerButton>
+      <HamburgerButton shouldMenuDisplay={shouldMenuOpen} onClick={toggleMenu} />
       <NavbarContainer shouldMenuDisplay={shouldMenuOpen}>
         <CloseHamburgerMenu onClick={toggleMenu}>X</CloseHamburgerMenu>
         {
@@ -114,6 +114,7 @@ function Navbar(props) {
             <RouterNavLink
               to={path}
               key={path + name}
+              onClick={toggleMenu}
               isActive={props.location.pathname === path}
             >
               {name}
