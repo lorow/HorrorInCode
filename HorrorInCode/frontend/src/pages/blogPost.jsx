@@ -57,6 +57,10 @@ const ArticleBackArrow = styled.button`
 const ArticleContent = styled.div`
   padding-left: 20px;
   padding-right: 10vw;
+
+  font-size: calc(.9rem + .1vw);
+  opacity: .8;
+  padding-bottom: 20px;
 `;
 
 const ArticleFlexRow = styled.div`
