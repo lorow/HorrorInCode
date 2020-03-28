@@ -34,13 +34,22 @@ export default function LandingPage(props) {
   const animVariants = rootTransition['landing'];
   const projects = useSelector(state => state.projects);
   const [slideId, setSlideId] = useState(0);
+  const [previousSlideId, setPreviousSlideId] = useState(0);
+  const [projectId, setProjectID] = useState(-1);
 
   const onClickNext = () => {
+    setPreviousSlideId(slideId);
     setSlideId(slideId + 1);
   }
 
   const onClickPrev = () => {
+    setPreviousSlideId(slideId);
     setSlideId(slideId - 1);
+  }
+
+  const handleSlideChange = (id) => {
+    setPreviousSlideId(slideId);
+    setSlideId(id)
   }
 
   const onProjectClick = (projectID) => {
@@ -49,20 +58,37 @@ export default function LandingPage(props) {
   }
 
   useEffect(() => {
+    console.log("cur", slideId, "prev", previousSlideId);
+
+    const newState = previousSlideId > slideId ? projectId - 1 : projectId + 1;
+    setProjectID(newState)
+
+    const n = 3; // amount of tiles, calculated from the data from the backend
+
+    if (newState < 0) {
+      setProjectID(n);
+    } else if (newState > n) {
+      setProjectID(0);
+    } else {
+      setProjectID(newState);
+    }
+
+  }, [slideId, previousSlideId])
+
+  useEffect(() => {
     dispatch(setBackgroundText("MY WORKS"));
     dispatch(setVisualPageIndex("01"));
     dispatch(fetchProjects());
   }, [dispatch]);
 
-
   useEffect(() => {
-    console.log(projects)
-  }, [projects])
+    console.log("Project", projectId)
+  }, [projectId])
 
   return (
     <Main>
       <Greeter orderID={0} variants={animVariants} />
-      <ProjectSelect orderID={1} variants={animVariants} onClick={onProjectClick} slideId={slideId} setSlideId={setSlideId} />
+      <ProjectSelect orderID={1} variants={animVariants} onClick={onProjectClick} slideId={slideId} setSlideId={handleSlideChange} />
       <Pagination orderID={2} variants={animVariants} onClickPrev={onClickPrev} onClickNext={onClickNext} />
     </Main>
   );
