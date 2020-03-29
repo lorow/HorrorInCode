@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { history } from '../history';
 import { Tag } from '../components/tag';
+import BackArrow from '../components/BackArrow';
 import { fetchCompleteBlogPost } from '../actions/blogActions';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -31,28 +32,6 @@ const ArticleTitle = styled.h1`
   font-size: calc(3rem + .5vw);
 `;
 
-const ArticleBackArrow = styled.button`
-  margin-left: auto;
-  margin-right: 60px;
-  z-index: 5;
-  background-image: url('/svg/BackArrow.svg');
-  background-repeat: no-repeat;
-  width: 40px;
-  line-height: 40px;
-  border: none;
-  background-size: 100%;
-  background-position: center;
-  background-color: transparent;
-
-  transition: all .2s;
-  &:hover{
-    transform: translateX(5px)
-  }
-
-  @media(max-width: 621px){
-    display: none;
-  }
-`;
 
 const ArticleContent = styled.div`
   padding-left: 20px;
@@ -112,7 +91,7 @@ export default function BlogPost(props) {
             <ArticleTitle>
               {article.data.title}
             </ArticleTitle>
-            <ArticleBackArrow onClick={() => history.goBack()} />
+            <BackArrow />
           </ArticleFlexRow>
         </header>
         <ArticleContent>

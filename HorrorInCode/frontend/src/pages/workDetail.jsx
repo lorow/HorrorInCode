@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import BackArrow from '../components/BackArrow';
 import styled from 'styled-components';
 
 const ProjectDetailContainer = styled(motion.article)`
@@ -8,9 +9,6 @@ const ProjectDetailContainer = styled(motion.article)`
   position: relative;
   grid-area: navigation;
 `;
-
-const GoBackButton = styled.button``;
-
 
 export default function WorkDetail(props) {
 
@@ -20,9 +18,7 @@ export default function WorkDetail(props) {
     <ProjectDetailContainer exit={{}}>
       <h1>
         {projectId}
-        <GoBackButton>
-
-        </GoBackButton>
+        <BackArrow />
       </h1>
     </ProjectDetailContainer>
   )

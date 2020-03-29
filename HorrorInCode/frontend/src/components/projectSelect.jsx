@@ -33,7 +33,7 @@ const ProjectSlider = styled.div`
   grid-column: 3 / 5;
 `;
 
-const ProjectLink = styled.a`
+const ProjectLink = styled.div`
   margin-right: 20px;
   width: 100%;
   height: 100%;
@@ -100,7 +100,10 @@ export default function ProjectSelect(props) {
         >
           {
             props.projects.map(project => (
-              <ProjectLink key={project.id}>
+              <ProjectLink
+                onClick={() => { props.onClick(project.id) }}
+                key={project.id}
+              >
                 <img src={`/media/${project.cover}`} alt={project.name} />
               </ProjectLink>
             ))

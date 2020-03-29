@@ -61,7 +61,7 @@ export default function LandingPage(props) {
   }
 
   const onProjectClick = (projectID) => {
-    history.go(`/projects/${projectID}`);
+    history.push(`/project/${projectID}`);
   }
 
   useEffect(() => {
