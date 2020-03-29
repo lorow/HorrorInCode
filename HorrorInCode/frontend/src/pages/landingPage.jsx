@@ -6,6 +6,7 @@ import Pagination from '../components/pagination';
 import ProjectSelect from '../components/projectSelect';
 import { rootTransition } from '../transitions';
 import { setBackgroundText, setVisualPageIndex } from '../actions/pageActions';
+import { history } from '../history';
 import { fetchProjects } from '../actions/projectActions';
 
 const Main = styled.main`
@@ -35,7 +36,14 @@ export default function LandingPage(props) {
   const projects = useSelector(state => state.projects);
   const [slideId, setSlideId] = useState(0);
   const [previousSlideId, setPreviousSlideId] = useState(0);
-  const [projectId, setProjectID] = useState(-1);
+  const [projectId, setProjectID] = useState(0);
+
+  useEffect(() => {
+    dispatch(setBackgroundText("MY WORKS"));
+    dispatch(setVisualPageIndex("01"));
+    dispatch(fetchProjects());
+  }, [dispatch]);
+
 
   const onClickNext = () => {
     setPreviousSlideId(slideId);
@@ -53,42 +61,41 @@ export default function LandingPage(props) {
   }
 
   const onProjectClick = (projectID) => {
-    // push the history to /projects/:id
-    // AnimatePresence will take care of it
+    history.go(`/projects/${projectID}`);
   }
 
   useEffect(() => {
-    console.log("cur", slideId, "prev", previousSlideId);
+    if (projects.data) {
+      const newState = previousSlideId > slideId ? projectId - 1 : projectId + 1;
+      setProjectID(newState)
 
-    const newState = previousSlideId > slideId ? projectId - 1 : projectId + 1;
-    setProjectID(newState)
-
-    const n = 3; // amount of tiles, calculated from the data from the backend
-
-    if (newState < 0) {
-      setProjectID(n);
-    } else if (newState > n) {
-      setProjectID(0);
-    } else {
-      setProjectID(newState);
+      // should the newState go negative, set the project ID to the very end
+      // of the list
+      if (newState < 1) {
+        setProjectID(projects.data.length);
+        // should the newState overflow the amount of projects, set it to the
+        // very first one
+      } else if (newState > projects.data.length) {
+        setProjectID(1);
+        // otherwise it's fine
+      } else {
+        setProjectID(newState);
+      }
     }
-
-  }, [slideId, previousSlideId])
-
-  useEffect(() => {
-    dispatch(setBackgroundText("MY WORKS"));
-    dispatch(setVisualPageIndex("01"));
-    dispatch(fetchProjects());
-  }, [dispatch]);
-
-  useEffect(() => {
-    console.log("Project", projectId)
-  }, [projectId])
+  }, [slideId, previousSlideId, projects])
 
   return (
     <Main>
       <Greeter orderID={0} variants={animVariants} />
-      <ProjectSelect orderID={1} variants={animVariants} onClick={onProjectClick} slideId={slideId} setSlideId={handleSlideChange} />
+      <ProjectSelect
+        projects={projects.data}
+        orderID={1}
+        variants={animVariants}
+        onClick={onProjectClick}
+        slideId={slideId}
+        setSlideId={handleSlideChange}
+        projectID={projectId}
+      />
       <Pagination orderID={2} variants={animVariants} onClickPrev={onClickPrev} onClickNext={onClickNext} />
     </Main>
   );

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Carousel from '@brainhubeu/react-carousel';
-import { motion } from 'framer-motion'
+import { motion, useAnimation } from 'framer-motion'
 import '@brainhubeu/react-carousel/lib/style.css';
 import styled from 'styled-components';
 
@@ -14,7 +14,7 @@ const ProjectSelectContainer = styled(motion.article)`
   grid-template-areas: "spacer text galery galery";
 `;
 
-const ProjectName = styled.h2`
+const ProjectName = styled(motion.h2)`
   color: white;
   font-size: calc(1.2rem + 1.3vw);
   margin-top: 2rem;
@@ -35,15 +35,24 @@ const ProjectSlider = styled.div`
 
 const ProjectLink = styled.a`
   margin-right: 20px;
+  width: 100%;
+  height: 100%;
+  
+  min-height: 40vh;
+
   img{
     width: 100%;
     height: 100%;
+    object-fit: cover;
   }
 `;
 
 export default function ProjectSelect(props) {
 
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [projectTitle, setProjectTItle] = useState("");
+
+  const headerController = useAnimation();
 
   const updateWidth = () => {
     setWindowWidth(window.innerWidth);
@@ -56,6 +65,21 @@ export default function ProjectSelect(props) {
       window.removeEventListener('resize', updateWidth);
     }
   }, []);
+
+  useEffect(() => {
+    console.log(props.projectID)
+    // every time the projectID changes, we should animate oout the header, change the text, and animate the header back in
+    const animHelper = async () => {
+      await headerController.start({ opacity: 0, duration: 50 });
+
+      const currentProject = props.projects.filter(project => project.id === String(props.projectID))[0];
+      // setProjectTItle(currentProject.name);
+
+      await headerController.start({ opacity: 1, duration: 50 });
+    }
+
+    animHelper();
+  }, [props.projectID])
 
   return (
     <ProjectSelectContainer
@@ -74,18 +98,16 @@ export default function ProjectSelect(props) {
             props.setSlideId(id)
           }}
         >
-          <ProjectLink onClick={() => props.onClick(0)}>
-            <img src={"https://placebear.com/864/550"} alt="kotek" />
-          </ProjectLink>
-          <ProjectLink onClick={() => props.onClick(1)}>
-            <img src={"http://placekitten.com/864/550"} alt="kotek" />
-          </ProjectLink>
-          <ProjectLink onClick={() => props.onClick(2)}>
-            <img src={"http://placekitten.com/864/550"} alt="kotek" />
-          </ProjectLink>
+          {
+            props.projects.map(project => (
+              <ProjectLink key={project.id}>
+                <img src={`/media/${project.cover}`} alt={project.name} />
+              </ProjectLink>
+            ))
+          }
         </Carousel>
       </ProjectSlider>
-      <ProjectName>Name of the current project</ProjectName>
+      <ProjectName animate={headerController} >{projectTitle}</ProjectName>
     </ProjectSelectContainer>
   )
 }
