@@ -35,8 +35,8 @@ export default function LandingPage(props) {
   const animVariants = rootTransition['landing'];
   const projects = useSelector(state => state.projects);
   const [slideId, setSlideId] = useState(0);
-  const [previousSlideId, setPreviousSlideId] = useState(0);
-  const [projectId, setProjectID] = useState(0);
+  const [previousSlideId, setPreviousSlideId] = useState(-1);
+  const [projectId, setProjectID] = useState(-1);
 
   useEffect(() => {
     dispatch(setBackgroundText("MY WORKS"));
@@ -66,20 +66,21 @@ export default function LandingPage(props) {
 
   useEffect(() => {
     if (projects.data) {
-      const newState = previousSlideId > slideId ? projectId - 1 : projectId + 1;
-      setProjectID(newState)
+      if (!(previousSlideId === slideId)) {
 
-      // should the newState go negative, set the project ID to the very end
-      // of the list
-      if (newState < 1) {
-        setProjectID(projects.data.length);
-        // should the newState overflow the amount of projects, set it to the
-        // very first one
-      } else if (newState > projects.data.length) {
-        setProjectID(1);
-        // otherwise it's fine
-      } else {
-        setProjectID(newState);
+        const newState = previousSlideId > slideId ? projectId - 1 : projectId + 1;
+        // should the newState go negative, set the project ID to the very end
+        // of the list
+        if (newState < 1) {
+          setProjectID(projects.data.length);
+          // should the newState overflow the amount of projects, set it to the
+          // very first one
+        } else if (newState > projects.data.length) {
+          setProjectID(1);
+          // otherwise it's fine
+        } else {
+          setProjectID(newState);
+        }
       }
     }
   }, [slideId, previousSlideId, projects])

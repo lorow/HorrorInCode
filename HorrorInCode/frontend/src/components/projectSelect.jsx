@@ -67,13 +67,15 @@ export default function ProjectSelect(props) {
   }, []);
 
   useEffect(() => {
-    console.log(props.projectID)
     // every time the projectID changes, we should animate oout the header, change the text, and animate the header back in
     const animHelper = async () => {
       await headerController.start({ opacity: 0, duration: 50 });
 
       const currentProject = props.projects.filter(project => project.id === String(props.projectID))[0];
-      // setProjectTItle(currentProject.name);
+      if (currentProject)
+        setProjectTItle(currentProject.name);
+      else
+        setProjectTItle("");
 
       await headerController.start({ opacity: 1, duration: 50 });
     }
@@ -94,9 +96,7 @@ export default function ProjectSelect(props) {
           slidesPerPage={windowWidth <= "800" ? 1 : 2}
           infinite
           value={props.slideId}
-          onChange={id => {
-            props.setSlideId(id)
-          }}
+          onChange={(id) => { console.log("slided"); props.setSlideId(id) }}
         >
           {
             props.projects.map(project => (
