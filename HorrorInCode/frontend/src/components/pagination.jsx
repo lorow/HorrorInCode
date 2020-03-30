@@ -24,9 +24,12 @@ const Button = styled.button`
 const Dots = styled.div`
   background-image: url('/svg/dot.svg');
   background-repeat: space;
-  width: 20vw;
+  width: 25vw;
   height: 10px;
   background-size: 10px auto;
+  @media (max-width:750px) {
+    width: 45vw;
+  }
 `;
 
 export default function Pagination({ onClickPrev, onClickNext, orderID, variants }) {
