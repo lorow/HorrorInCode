@@ -15,9 +15,13 @@ const Main = styled(motion.main)`
   z-index: 3;
   display: grid;
   position: relative;
-  grid-template-columns: .2fr 1fr .18fr;
-  grid-template-rows: .1fr auto;
+  grid-template-columns: .3fr 1fr .18fr;
+  grid-template-rows: .03fr 1fr;
   grid-template-areas: "nav nav nav" "left content right"; 
+  @media (max-width:650px){
+    grid-template-columns: .1fr 1fr .18fr;
+    grid-template-rows: 0fr 1fr;
+  }
 `;
 
 const ArticleContainer = styled.article`
