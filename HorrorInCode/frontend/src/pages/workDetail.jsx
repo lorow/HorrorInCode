@@ -24,6 +24,7 @@ const ProjectDetailContainer = styled(motion.article)`
                         "left left title title arrow right right"
                         "left left spc content spcr right right";
 
+  overflow: hidden;
   position: relative;
 `;
 
@@ -46,12 +47,23 @@ const ProjectCover = styled.img`
   margin-left: auto;
   margin-right: auto;
   margin-bottom: -20px;
+
+  @media (max-width: 420px){
+    width: 85%;
+
+    top: -30px;
+    margin-bottom: -10px;
+  }
 `;
 
 const InlineSectionTitle = styled.div`
   display: flex;
   justify-content: space-between;
   font-size: 1.2rem;
+
+  @media (max-width: 420px){
+    padding-left: 10px;
+  }
 `;
 
 const ProjectDetail = styled.section`
@@ -62,7 +74,7 @@ const ProjectDetail = styled.section`
   margin-top: .6rem;
 
   &:last-of-type{
-    margin-bottom: 40px;
+    padding-bottom: 40px;
   }
 `;
 
@@ -81,7 +93,6 @@ export default function WorkDetail(props) {
   }, [dispatch, projectId])
 
   useEffect(() => {
-    console.log(projectInfo)
     if (projectInfo) {
       dispatch(setBackgroundText(projectInfo.name))
     }

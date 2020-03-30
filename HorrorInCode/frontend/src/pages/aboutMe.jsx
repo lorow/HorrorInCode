@@ -17,10 +17,10 @@ const Layout = styled(motion.main)`
   grid-template-rows: .9fr 1.2fr .8fr 1.2fr .6fr;
   grid-template-areas: "spacer spacer" "imageSection about" "social button"  "empty empty";
   grid-gap: 10px;
-  @media (max-width: 768px) {
-    grid-template-columns: .5fr 1fr;
-    grid-template-rows: .1fr .3fr .1fr;
-    grid-template-areas: "spacer spacer" "imageSection about" "button button"  "social social";
+  @media (max-width: 468px) {
+    grid-template-columns: .1fr 1fr .5fr;
+    grid-template-rows: .3fr .3fr .1fr;
+    grid-template-areas: "spacer spacer spacer" "left about imageSection" "button button button"  "social social social";
   }
 `;
 
@@ -52,7 +52,7 @@ const DimmedImage = styled.img`
   -webkit-mask-image: -webkit-gradient(linear, left top, 
     left bottom, from(rgba(0,0,0,.9)), to(rgba(0,0,0, 0)));
 
-  @media(max-width: 768px){
+  @media(max-width: 540px){
     width: 120px;
     margin-right: 10px;
     margin-left: 10px;

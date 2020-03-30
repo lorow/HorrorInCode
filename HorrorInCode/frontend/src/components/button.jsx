@@ -20,11 +20,20 @@ export const PrimaryGithubButton = styled.a`
   display: block;
   height: 42px;
   width: 200px;
-
   line-height: 42px;
   text-align: center;
   color: white;
   background-color: transparent;
+  font-weight: 300;
 
-  font-weight: 300px;
+  text-decoration: none;
+
+  @media (max-width:420px){
+    height: 32px;
+    width: 150px;
+    line-height: 32px;
+    margin-left: 5px;
+    font-size: 15px;
+    font-weight: 200;
+  }
 `;
