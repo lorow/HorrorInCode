@@ -17,6 +17,7 @@ class Project(models.Model):
     cover = models.ImageField(blank=True, null=True)
     tech_stack = models.ManyToManyField(Tag, related_name="tech_stack", blank=True)
     description = models.TextField(blank=True, null=True)
+    github = models.TextField(blank=True, null=True, default="")
     def __str__(self):
         return self.name
     

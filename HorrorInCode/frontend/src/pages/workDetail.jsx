@@ -96,7 +96,9 @@ export default function WorkDetail(props) {
         <ProjectCover src={projectInfo.isSingle && `/media/${projectInfo.cover}`} />
         <InlineSectionTitle>
           <h2>Technological stack</h2>
-          <PrimaryGithubButton>Github</PrimaryGithubButton>
+          <PrimaryGithubButton href={projectInfo.isSingle && projectInfo.github}>
+            Github
+          </PrimaryGithubButton>
         </InlineSectionTitle>
 
         <ProjectDetail tagsSection>

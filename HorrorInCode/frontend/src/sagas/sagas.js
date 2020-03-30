@@ -85,7 +85,8 @@ function* fetchSingleProject(action) {
         id,
         name
       },
-      description
+      description,
+      github
     }
   }`
 
