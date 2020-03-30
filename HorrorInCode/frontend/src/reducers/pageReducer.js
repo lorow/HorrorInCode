@@ -4,16 +4,22 @@ export const PageReducer = (
 ) => {
   switch (action.type) {
     case 'SET_BACKGROUND_TEXT':
-      return {
-        ...state,
-        backgroundText: action.payload
-      }
+      if (action.payload !== state.backgroundText)
+        return {
+          ...state,
+          backgroundText: action.payload
+        }
+      else
+        return state
 
     case "SET_VISUAL_PAGE_INDEX":
-      return {
-        ...state,
-        visualPageIndex: action.payload
-      }
+      if (action.payload !== state.visualPageIndex)
+        return {
+          ...state,
+          visualPageIndex: action.payload
+        }
+      else
+        return state
 
     default: return state
   }

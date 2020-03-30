@@ -36,7 +36,7 @@ export default function LandingPage(props) {
   const projects = useSelector(state => state.projects);
   const [slideId, setSlideId] = useState(0);
   const [previousSlideId, setPreviousSlideId] = useState(-1);
-  const [projectId, setProjectID] = useState(-1);
+  const [projectId, setProjectID] = useState(-2);
 
   useEffect(() => {
     dispatch(setBackgroundText("MY WORKS"));
@@ -65,7 +65,7 @@ export default function LandingPage(props) {
   }
 
   useEffect(() => {
-    if (projects.data) {
+    if (projects.data && !(projects.isSingle)) {
       if (!(previousSlideId === slideId)) {
 
         const newState = previousSlideId > slideId ? projectId - 1 : projectId + 1;
@@ -88,15 +88,17 @@ export default function LandingPage(props) {
   return (
     <Main>
       <Greeter orderID={0} variants={animVariants} />
-      <ProjectSelect
-        projects={projects.data}
-        orderID={1}
-        variants={animVariants}
-        onClick={onProjectClick}
-        slideId={slideId}
-        setSlideId={handleSlideChange}
-        projectID={projectId}
-      />
+      {!projects.isSingle &&
+        <ProjectSelect
+          projects={projects.data}
+          orderID={1}
+          variants={animVariants}
+          onClick={onProjectClick}
+          slideId={slideId}
+          setSlideId={handleSlideChange}
+          projectID={projectId}
+        />
+      }
       <Pagination orderID={2} variants={animVariants} onClickPrev={onClickPrev} onClickNext={onClickNext} />
     </Main>
   );

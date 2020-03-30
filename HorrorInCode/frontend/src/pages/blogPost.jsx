@@ -32,7 +32,6 @@ const ArticleTitle = styled.h1`
   font-size: calc(3rem + .5vw);
 `;
 
-
 const ArticleContent = styled.div`
   padding-left: 20px;
   padding-right: 10vw;

@@ -81,16 +81,18 @@ function* fetchSingleProject(action) {
       id,
       name,
       cover,
-      description,
-      tech_stack
+      techStack {
+        id,
+        name
+      },
+      description
     }
   }`
 
   const response = yield call(fetch, `/graph/?query=${query}`.replace(/\s+/g, ''))
   if (response.ok) {
     const json = yield call([response, "json"])
-    console.log(json)
-    yield put(setSingleProject({}))
+    yield put(setSingleProject(json.data.project))
   }
 }
 

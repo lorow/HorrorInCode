@@ -4,7 +4,8 @@ import { history } from '../history';
 
 const BackArrowButton = styled.button`
   margin-left: auto;
-  margin-right: 60px;
+  margin-right: ${props => props.shouldAutoCenter ? "auto" : "60px"};
+  margin-left: ${props => props.shouldAutoCenter ? "auto" : "initial"}
   z-index: 5;
   background-image: url('/svg/BackArrow.svg');
   background-repeat: no-repeat;
@@ -23,10 +24,12 @@ const BackArrowButton = styled.button`
   @media(max-width: 621px){
     display: none;
   }
+
+  grid-area: ${props => props.gridPosition};
 `;
 
 export default function BackArrow(props) {
   return (
-    <BackArrowButton onClick={() => history.goBack()} />
+    <BackArrowButton gridPosition={props.gridPosition} shouldAutoCenter={props.shouldAutoCenter} onClick={() => history.goBack()} />
   )
 }

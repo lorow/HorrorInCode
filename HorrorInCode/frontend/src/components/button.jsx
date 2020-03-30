@@ -14,3 +14,17 @@ export const PrimaryButton = styled.button`
   line-height: ${props => props.themeSmall ? "12px" : "18px"};
   color: #FFFFFF;
 `;
+
+export const PrimaryGithubButton = styled.a`
+  border: 2px solid #0860E5;
+  display: block;
+  height: 42px;
+  width: 200px;
+
+  line-height: 42px;
+  text-align: center;
+  color: white;
+  background-color: transparent;
+
+  font-weight: 300px;
+`;
