@@ -36,7 +36,7 @@ export default function LandingPage(props) {
   const projects = useSelector(state => state.projects);
   const [slideId, setSlideId] = useState(0);
   const [previousSlideId, setPreviousSlideId] = useState(-1);
-  const [projectId, setProjectID] = useState(-2);
+  const [projectId, setProjectID] = useState(0);
 
   useEffect(() => {
     dispatch(setBackgroundText("MY WORKS"));

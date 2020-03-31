@@ -17,12 +17,12 @@ const ProjectDetailContainer = styled(motion.article)`
   color: white;
   display: grid;
 
-  grid-template-columns: .2fr .1fr .1fr 1fr .1fr .1fr .2fr;
+  grid-template-columns: minmax(0, .3fr) .1fr 1fr .1fr minmax(0, .3fr);
   grid-template-rows: .15fr .1fr 1fr;
 
-  grid-template-areas:  "nav nav nav nav nav nav nav"
-                        "left left title title arrow right right"
-                        "left left spc content spcr right right";
+  grid-template-areas:  "nav nav nav nav nav"
+                        "left title title arrow right"
+                        "left spc content spcr right";
 
   overflow: hidden;
   position: relative;
@@ -40,20 +40,27 @@ const ProjectTitle = styled.h1`
   font-size: calc(2rem + 2vw);
 `;
 
-const ProjectCover = styled.img`
-  width: 100%;
+const ProjectCoverContainer = styled.figure`
   position: relative;
+  width: 100%;
   top: -50px;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: -20px;
-
+  flex: 1;
   @media (max-width: 420px){
     width: 85%;
 
     top: -30px;
     margin-bottom: -10px;
   }
+`;
+
+const ProjectCover = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
 `;
 
 const InlineSectionTitle = styled.div`
@@ -104,7 +111,9 @@ export default function WorkDetail(props) {
       <BackArrow shouldAutoCenter gridPosition={"arrow"} />
 
       <ContentContainer>
-        <ProjectCover src={projectInfo.isSingle && `/media/${projectInfo.cover}`} />
+        <ProjectCoverContainer>
+          <ProjectCover src={projectInfo.isSingle && `/media/${projectInfo.cover}`} />
+        </ProjectCoverContainer>
         <InlineSectionTitle>
           <h2>Technological stack</h2>
           <PrimaryGithubButton href={projectInfo.isSingle && projectInfo.github}>

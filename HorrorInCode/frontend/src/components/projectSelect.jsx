@@ -16,7 +16,7 @@ const ProjectSelectContainer = styled(motion.article)`
 
 const ProjectName = styled(motion.h2)`
   color: white;
-  font-size: calc(1.2rem + 1.3vw);
+  font-size: calc(1.5rem + 1.3vw);
   margin-top: 2rem;
   z-index: 1;
   grid-row: 1;
