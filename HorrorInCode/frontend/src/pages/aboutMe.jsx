@@ -86,7 +86,7 @@ export default function AboutMe(props) {
 
   return (
     <Layout variants={animVariants} initial="initial" animate="in" exit="out">
-      <DimmedImage custom={1} variants={animVariants} src="/img/zdzich.jpg" />
+      <DimmedImage custom={1} variants={animVariants} src="/static/img/zdzich.jpg" />
       <TextContainer>
         <SectionTitle custom={0} variants={animVariants}>About me</SectionTitle>
         <motion.div custom={0} variants={animVariants}>

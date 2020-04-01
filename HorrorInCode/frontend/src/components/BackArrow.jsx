@@ -7,7 +7,7 @@ const BackArrowButton = styled.button`
   margin-right: ${props => props.shouldAutoCenter ? "auto" : "60px"};
   margin-left: ${props => props.shouldAutoCenter ? "auto" : "initial"}
   z-index: 5;
-  background-image: url('/svg/BackArrow.svg');
+  background-image: url('/static/svg/BackArrow.svg');
   background-repeat: no-repeat;
   width: 40px;
   line-height: 40px;
