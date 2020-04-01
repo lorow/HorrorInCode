@@ -74,6 +74,12 @@ const EmailButton = styled(PrimaryButton)`
   }
 `;
 
+const SocialLink = styled.a`
+  color: white;
+  text-decoration: none;
+  font-weight: 700;
+`;
+
 export default function AboutMe(props) {
 
   const dispatch = useDispatch();
@@ -101,6 +107,12 @@ export default function AboutMe(props) {
           </p>
           <p>
             {`But work isn't the only thing that makes life worth living, I love to 3D print all the things, and to shred snow with my board in the season.`}
+          </p>
+          <p>
+            <SocialLink href="github.com/lorow">//Github</SocialLink>
+          </p>
+          <p>
+            <SocialLink href="linkedin.com/in/lorow">//Linkedin</SocialLink>
           </p>
         </motion.div>
       </TextContainer>
