@@ -106,7 +106,7 @@ export default function WorkDetail(props) {
   }, [dispatch, projectInfo])
 
   return (
-    <ProjectDetailContainer exit={{}}>
+    <ProjectDetailContainer initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
       <ProjectTitle>{projectInfo.name}</ProjectTitle>
       <BackArrow shouldAutoCenter gridPosition={"arrow"} />
 

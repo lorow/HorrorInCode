@@ -46,6 +46,7 @@ const SectionTitle = styled.h2`
 
 const DimmedImage = styled.img`
   grid-area: imageSection;
+  filter: grayscale();
   margin-left: auto;
   margin-right: 40px;
   width: 200px;
@@ -85,7 +86,7 @@ export default function AboutMe(props) {
 
   return (
     <Layout variants={animVariants} initial="initial" animate="in" exit="out">
-      <DimmedImage custom={1} variants={animVariants} src="http://placekitten.com/200/300" />
+      <DimmedImage custom={1} variants={animVariants} src="/img/zdzich.jpg" />
       <TextContainer>
         <SectionTitle custom={0} variants={animVariants}>About me</SectionTitle>
         <motion.div custom={0} variants={animVariants}>
@@ -99,11 +100,11 @@ export default function AboutMe(props) {
             {`Driven by my passion, I try to learn and discover new things every day. I constantly seek to better myself in what I do, be it code, design or anything else. `}
           </p>
           <p>
-            {`But work isn't the only thing that makes life worth living, I love to 3D print all the things, and shred snow my board in the season.`}
+            {`But work isn't the only thing that makes life worth living, I love to 3D print all the things, and to shred snow with my board in the season.`}
           </p>
         </motion.div>
       </TextContainer>
-      <EmailButton custom={1} variants={animVariants}><a href="mailto: goik.zdzislaw@gmail.com">Shoot me an email!</a></EmailButton>
+      <EmailButton custom={1} variants={animVariants}><a href="mailto: goik.zdzislaw@gmail.com">Let's talk!</a></EmailButton>
     </Layout>
   )
 }
