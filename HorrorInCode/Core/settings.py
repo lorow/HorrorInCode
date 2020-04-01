@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-
+import dj_database_url 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REACT_APP_DIR = os.path.join(BASE_DIR, 'frontend')
@@ -25,7 +25,7 @@ SECRET_KEY = 'djdw1^8tsf&s166+96(#=t^1&8k8-zi*9q$%!6z(#1f!kn08bc'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['horror-in-code.heroku.com', 'zdzislawgoik.me']
 
 
 # Application definition
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -87,6 +88,8 @@ DATABASES = {
         'PORT': os.environ.get('Horror_DB_PORT', 5432)
     }
 }
+# heroku
+DATABASES['default'].update(dj_database_url.config(conn_max_age=500))
 
 GRAPHENE = {
     'SCHEMA': 'Core.schema.schema'  # Where your Graphene schema lives
@@ -128,6 +131,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static_media')
