@@ -159,12 +159,12 @@ if USE_S3:
     # s3 static settings
     AWS_LOCATION = 'static'
     STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
-    STATICFILES_STORAGE = 'Core.storage_backends.StaticStorage'
+    STATICFILES_STORAGE = 'API.storage_backends.StaticStorage'
 
     # s3 public media settings
     PUBLIC_MEDIA_LOCATION = 'media'
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
-    DEFAULT_FILE_STORAGE = 'Core.storage_backends.PublicMediaStorage'
+    DEFAULT_FILE_STORAGE = 'API.storage_backends.PublicMediaStorage'
 
 # Activate Django-Heroku.
 django_heroku.settings(locals())
