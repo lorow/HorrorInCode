@@ -21,7 +21,7 @@ REACT_APP_DIR = os.path.join(BASE_DIR, 'frontend')
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'djdw1^8tsf&s166+96(#=t^1&8k8-zi*9q$%!6z(#1f!kn08bc'
+SECRET_KEY = os.environ.get("Horror_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
