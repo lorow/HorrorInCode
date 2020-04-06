@@ -22,7 +22,7 @@ const Button = styled.button`
 `;
 
 const Dots = styled.div`
-  background-image: url('/svg/dot.svg');
+  background-image: url('/static/svg/dot.svg');
   background-repeat: space;
   width: 25vw;
   height: 10px;
