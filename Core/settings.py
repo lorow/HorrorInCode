@@ -91,7 +91,7 @@ DATABASES = {
     }
 }
 # heroku
-DATABASES['default'] = dj_database_url.config()
+DATABASES['default'] = dj_database_url.config(default="postgresql://postgresql")
 
 GRAPHENE = {
     'SCHEMA': 'Core.schema.schema'  # Where your Graphene schema lives
