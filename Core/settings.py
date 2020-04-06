@@ -91,7 +91,7 @@ DATABASES = {
     }
 }
 # heroku
-DATABASES['default'].update(dj_database_url.config(conn_max_age=500))
+DATABASES['default'] = dj_database_url.config()
 
 GRAPHENE = {
     'SCHEMA': 'Core.schema.schema'  # Where your Graphene schema lives
