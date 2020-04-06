@@ -88,7 +88,7 @@ export default function LandingPage(props) {
   return (
     <Main>
       <Greeter orderID={0} variants={animVariants} />
-      {!projects.isSingle &&
+      {!projects.isSingle && projects.data &&
         <ProjectSelect
           projects={projects.data}
           orderID={1}

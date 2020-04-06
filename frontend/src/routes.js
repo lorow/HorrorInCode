@@ -10,5 +10,4 @@ export const routes = [
   { path: '/blog', Component: Blog, name: "Blog", visibleInNav: true },
   { path: '/blog/:articleId/', Component: blogPost, name: "post", visibleInNav: false },
   { path: '/project/:projectId/', Component: WorkDetail, name: "project", visibleInNav: false },
-
 ]

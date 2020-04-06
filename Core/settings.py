@@ -24,7 +24,7 @@ REACT_APP_DIR = os.path.join(BASE_DIR, 'frontend')
 SECRET_KEY = os.environ.get("Horror_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("PROJECT_DEBUG") == "True"
 
 ALLOWED_HOSTS = ['horror-in-code.heroku.com', 'zdzislawgoik.me']
 
@@ -91,7 +91,8 @@ DATABASES = {
     }
 }
 # heroku
-DATABASES['default'] = dj_database_url.config()
+if not DEBUG:
+    DATABASES['default'] = dj_database_url.config()
 
 GRAPHENE = {
     'SCHEMA': 'Core.schema.schema'  # Where your Graphene schema lives
@@ -147,7 +148,7 @@ STATICFILES_DIRS = [
     os.path.join(REACT_APP_DIR, 'build', 'static'),
 ]
 
-USE_S3 = os.environ.get("USE_s3") == "True"
+USE_S3 = os.environ.get("USE_S3") == "True"
 
 if USE_S3:
     AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
@@ -166,5 +167,6 @@ if USE_S3:
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
     DEFAULT_FILE_STORAGE = 'API.storage_backends.PublicMediaStorage'
 
-# Activate Django-Heroku.
-django_heroku.settings(locals())
+# # Activate Django-Heroku.
+if not DEBUG:
+    django_heroku.settings(locals())
