@@ -1,1 +1,1 @@
-web: PYTHONPATH="HorrorInCode/.." gunicorn HorrorInCode.Core.wsgi
+web: gunicorn HorrorInCode.Core.wsgi
