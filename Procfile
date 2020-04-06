@@ -1,1 +1,1 @@
-web: gunicorn HorrorInCode.Core.wsgi
+web: gunicorn Core.wsgi
